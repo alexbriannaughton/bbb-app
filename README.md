@@ -8,14 +8,14 @@ x
 
 - Users should be able to login, in order to access their reviews (stretch: and save favorite bathrooms)
 - Users should be able to see a list of all of the bathrooms, and also a map of all of the bathrooms (Google Places API)
-- Click on a bathroom and see
-1. the location (probably address but maybe Google Places API thing?)
-2. A picture, either of the bathroom or the location in general
-3. some description or additional info (optional)
-4. something that shows if it’s public (no need to show if it’s not)
-5. where it is on a map
-6. the cumulative rating (average of all of the reviews) (show Best Bathroom if it’s BB),
-7. then all of the individual reviews (maybe like 10 at a time)
+- Click on a bathroom and see:
+  - the location (probably address but maybe Google Places API thing?)
+  - A picture, either of the bathroom or the location in general
+  - some description or additional info (optional)
+  - something that shows if it’s public (no need to show if it’s not)
+  - where it is on a map
+  - the cumulative rating (average of all of the reviews) (show Best Bathroom if it’s BB),
+  - then all of the individual reviews (maybe like 10 at a time)
 - Uers should be able to submit a bathroom with an attached review
 - Users should be able to submit a review for an existing bathroom on the existing bathroom page:
 - (username inherited from user_id when logged in)
@@ -28,8 +28,7 @@ x
 ## DB Schema
 ### User
 - Username
-- Password
-- Favorites (stretch)
+- Password_digest
 ### Bathroom
 - Location (probably an address)
 - Description (maybe call it something better) (optional)
@@ -48,3 +47,7 @@ x
 - Style (rating)
 ### Favorites
 (is a join table for Users and Bathrooms, no additional info needed)
+
+##Wireframe
+![IMG_5619](https://user-images.githubusercontent.com/109716310/205367081-beea4524-6af9-49d6-9a4b-262cd69b515a.jpg)
+![IMG_5620](https://user-images.githubusercontent.com/109716310/205367031-2a636629-d89e-47f4-8146-5b6db2ddf83b.jpg)
