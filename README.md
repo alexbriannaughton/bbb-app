@@ -28,8 +28,7 @@ x
 ## DB Schema
 ### User
 - Username
-- Password
-- Favorites (stretch)
+- Password_digest
 ### Bathroom
 - Location (probably an address)
 - Description (maybe call it something better) (optional)
