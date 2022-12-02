@@ -2,12 +2,12 @@
 
 ## Project Pitch
 
-x
+Better Bathroom Bureau is an organization dedicated to helping residents and visitors of Seattle access bathroom facilities around the city. Our web app catalogues bathrooms that users of the site submit, along with user reviews and ratings for each facility. Our goal is to share insight into available bathrooms and collect first-hand accounts of user experiences, in order to helps users have a better bathroom experience.
 
 ## User Stories
 
-- Users should be able to login, in order to access their reviews (stretch: and save favorite bathrooms)
-- Users should be able to see a list of all of the bathrooms, and also a map of all of the bathrooms (Google Places API)
+- Users will be able to login, in order to access their reviews (stretch: and save favorite bathrooms)
+- Users will be able to see a list of all of the bathrooms, and also a map of all of the bathrooms (Google Places API)
 - Click on a bathroom and see:
   - the location (probably address but maybe Google Places API thing?)
   - A picture, either of the bathroom or the location in general
@@ -48,6 +48,6 @@ x
 ### Favorites
 (is a join table for Users and Bathrooms, no additional info needed)
 
-##Wireframe
+## Wireframes
 ![IMG_5619](https://user-images.githubusercontent.com/109716310/205367081-beea4524-6af9-49d6-9a4b-262cd69b515a.jpg)
 ![IMG_5620](https://user-images.githubusercontent.com/109716310/205367031-2a636629-d89e-47f4-8146-5b6db2ddf83b.jpg)
