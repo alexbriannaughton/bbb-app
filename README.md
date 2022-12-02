@@ -26,16 +26,16 @@ x
 - Describe style (w/number)
 
 ## DB Schema
-# User
+### User
 - Username
 - Password
 - Favorites (stretch)
-# Bathroom
+### Bathroom
 - Location (probably an address)
 - Description (maybe call it something better) (optional)
 - A picture? (might be a stock picture for user submit)
 - Public (boolean)
-# Review
+### Review
 - User_id (1 if guest?)
 - Bathroom_id
 - Date
@@ -46,5 +46,5 @@ x
 - Cleanliness (rating)
 - Function (rating)
 - Style (rating)
-# Favorites
+### Favorites
 (is a join table for Users and Bathrooms, no additional info needed)
