@@ -15,7 +15,7 @@ class Bathroom < ApplicationRecord
     def b_average_score
         if self.reviews.count > 0
             all_scores = reviews.map {|r| r.average_score}
-            return all_scores.sum / all_scores.size
+            return (all_scores.sum / all_scores.size).round(1)
         else return "no reviews"
         end
     end

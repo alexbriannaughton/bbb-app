@@ -5,7 +5,7 @@ class BathroomsController < ApplicationController
 
     def show
         bathroom = find_bathroom
-        render json: bathroom
+        render json: bathroom, include: ['reviews', 'reviews.user']
     end
 
     # index action not actually being used in app right now. just using for dev purposes.

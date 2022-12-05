@@ -61,7 +61,7 @@
   width: 320px;
 }
 
-/* for the review form */
+/* for the new bathroom's review form */
 
 #toilet-button {
   background-color: transparent;
@@ -74,4 +74,24 @@
 }
 .hover-off {
   opacity: 50%;
+}
+
+/* for show bathroom page, all reviews */
+.review-div {
+  outline: 2px dashed black;
+}
+/* for show bathroom page review form */
+.review-form-div {
+  background-color: white;
+  outline: 2px dashed black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.x-button {
+  position:absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
 }
