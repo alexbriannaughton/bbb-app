@@ -7,7 +7,7 @@ function BestBathrooms({bathrooms}) {
     // maybe a custom model to get the average from the three scores in each review
     const bestBathrooms = bathrooms.filter(bathroom => bathroom.b_average_score >= 4).map(bathroom => {
         return (
-            <Link className="nounderline" to={`bathrooms/${bathroom.id}`} key={bathroom.id}>
+            <Link className="nounderline" to={`./bathrooms/${bathroom.id}`} key={bathroom.id}>
                 <div className="LVOneBathroom">
                     <p className="LVLocation">{bathroom.location}</p>
                     <p className="LVDescription">{bathroom.description}</p>
