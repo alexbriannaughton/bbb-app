@@ -28,6 +28,10 @@ class Review < ApplicationRecord
         end
     end
 
+    def average_score
+        ((cleanliness_rating + function_rating + style_rating).to_f / 3).round(1)
+    end
+
 end
 
 
