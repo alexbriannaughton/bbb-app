@@ -7,6 +7,7 @@ import BestBathrooms from './BestBathrooms';
 import LoginPage from './LoginPage';
 import NewBathroomPage from './NewBathroomPage';
 import MissionPage from './MissionPage';
+import ShowBathroomPage from './ShowBathroomPage';
 
 
 function App() {
@@ -14,8 +15,8 @@ function App() {
   const [user, setUser] = useState(null)
   const [bathrooms, setBathrooms] = useState([])
 
-  console.log(user)
-  console.log(bathrooms)
+  // console.log(user)
+  // console.log(bathrooms)
 
   useEffect(() => {
     // auto-login
@@ -62,6 +63,10 @@ function App() {
         <Route
           path="/our-mission"
           element={<MissionPage />}
+        />
+        <Route
+          path={`/bathrooms/:bathroomid`}
+          element={<ShowBathroomPage/>}
         />
       </Routes>
 
