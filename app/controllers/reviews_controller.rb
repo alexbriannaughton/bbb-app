@@ -6,7 +6,6 @@ class ReviewsController < ApplicationController
 
     def create
         review = Review.create!(review_params)
-        review.update(date: review.date - 1)
         render json: review
     end
 
