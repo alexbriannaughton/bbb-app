@@ -72,6 +72,9 @@ function BathroomForm({ user }) {
 
             const reviewResp = await fetch("/reviews", reviewConfig)
             const newReview = await reviewResp.json()
+            if (!reviewResp.ok) {
+                throw newReview.errors
+            }
 
             navigate("/")
             console.log(newReview, newBathroom)
