@@ -19,11 +19,13 @@
   margin: 10px 0; 
   text-decoration: none;
   font-size: 18px;
+  color: black;
 }
 
 #BBBTitle{
   text-align: center;
   font-size: 24px;
+  color: black;
 }
 
 #navbar {
@@ -40,6 +42,7 @@
   padding: 10px;
   border: 1px solid black;
   border-radius: 20px;
+  color: black;
 }
 
 
@@ -74,4 +77,22 @@
 }
 .hover-off {
   opacity: 50%;
+}
+
+
+
+/* for the OneBathrrom map */
+
+.Wrapper {
+  height: 800px;
+  width: 800px;
+  margin: 0 auto;
+  
+}
+
+.OneBathroomMap {
+  height: 600px;
+  width: 90%;
+  margin: 40px 5%;
+  border: 3px solid rgb(198, 146, 20);
 }
