@@ -1,10 +1,24 @@
 import { Link } from "react-router-dom"
 
-function NavBar(){
-    return(
+function NavBar({ user, setUser }) {
+
+    function handleLogoutClick() {
+        if (user) {
+            fetch("/logout", { method: "DELETE" }).then((r) => {
+                if (r.ok) {
+                    setUser(null)
+                }
+            })
+        }
+    }
+
+    return (
         <div className="navbar">
-            <Link to="/login">
-                Login
+            <Link
+                to="/login"
+                onClick={handleLogoutClick}
+            >
+                {user === null ? "Login" : "Logout"}
             </Link>
             <Link to="/best">
                 Best Bathrooms
@@ -18,7 +32,7 @@ function NavBar(){
             <Link to="/our-mission">
                 Our Mission
             </Link>
-            
+
         </div>
     )
 }

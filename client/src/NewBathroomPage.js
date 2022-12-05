@@ -1,7 +1,9 @@
-function NewBathroomPage() {
+import BathroomForm from "./components/BathroomForm"
+
+function NewBathroomPage({user}) {
     return(
         <div>
-            <h1>hello from new bathroom page</h1>
+            <BathroomForm user={user}/>
         </div>
     )
 }
