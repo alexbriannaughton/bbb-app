@@ -9,10 +9,5 @@
     "clean": "rm -rf public",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
-  },
-  "dependencies": {
-    "react-date-picker": "^9.1.0",
-    "react-datepicker": "^4.8.0",
-    "react-router-dom": "^6.4.4"
   }
 }
