@@ -3,6 +3,11 @@ class BathroomsController < ApplicationController
         render json: Bathroom.all
     end
 
+    def show
+        bathroom = find_bathroom
+        render json: bathroom
+    end
+
     # index action not actually being used in app right now. just using for dev purposes.
 
     def create
@@ -11,6 +16,10 @@ class BathroomsController < ApplicationController
     end
 
     private
+
+    def find_bathroom
+        Bathroom.find(params[:id])
+    end
 
     def bathroom_params
         params.permit(:location, :description, :public)

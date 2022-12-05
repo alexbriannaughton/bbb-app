@@ -13,26 +13,31 @@ function NavBar({ user, setUser }) {
     }
 
     return (
-        <div className="navbar">
-            <Link
-                to="/login"
-                onClick={handleLogoutClick}
-            >
-                {user === null ? "Login" : "Logout"}
-            </Link>
-            <Link to="/best">
-                Best Bathrooms
-            </Link>
-            <Link to="/">
-                Home
-            </Link>
-            <Link to="/new-bathroom">
-                Add New Bathroom
-            </Link>
-            <Link to="/our-mission">
-                Our Mission
-            </Link>
+        <div>
+            <div id="HeaderTop">
+                <Link id="navLogin" to="/login" onClick={handleLogoutClick}>
+                    {user === null ? "Login" : "Logout"}
+                </Link>
+                <Link to="/">
+                    <h1 id="BBBTitle">Better Bathroom Bureau</h1>
+                    <h2 id="BBBSubtitle">helping people in Seattle find bathrooms around the city</h2>
+                </Link>
+                <p id="navAccount">link to "account/profile"?</p>
+            </div>
+            
+            <div id="navbar">
+                <Link to="/best">
+                    Best Bathrooms
+                </Link>
+                
+                <Link to="/new-bathroom">
+                    Add New Bathroom
+                </Link>
+                <Link to="/our-mission">
+                    Our Mission
+                </Link>
 
+            </div>
         </div>
     )
 }

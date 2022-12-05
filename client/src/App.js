@@ -12,7 +12,10 @@ import MissionPage from './MissionPage';
 function App() {
 
   const [user, setUser] = useState(null)
+  const [bathrooms, setBathrooms] = useState([])
+
   console.log(user)
+  console.log(bathrooms)
 
   useEffect(() => {
     // auto-login
@@ -23,6 +26,14 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+      fetch('/bathrooms')
+      .then(r => r.json())
+      .then(b => setBathrooms(b))
+  }, [])
+
+    
+
   return (
     <div className="App">
       <NavBar
@@ -32,7 +43,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Homepage />}
+          element={<Homepage bathrooms={bathrooms}/>}
         />
         <Route
           path="/login"
@@ -42,7 +53,7 @@ function App() {
         />
         <Route
           path="/best"
-          element={<BestBathrooms />}
+          element={<BestBathrooms bathrooms={bathrooms}/>}
         />
         <Route
           path="/new-bathroom"
