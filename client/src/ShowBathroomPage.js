@@ -5,11 +5,9 @@ import { Wrapper } from '@googlemaps/react-wrapper';
 import OneBathroomMap from "./OneBathroomMap";
 import Marker from "./Marker";
 
-function ShowBathroomPage({ user }) {
+function ShowBathroomPage({ user, APIKey }) {
 
     const params = useParams()
-
-    const APIKey = "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
 
     const [bathroom, setBathroom] = useState({})
     const [showReviewForm, setShowReviewForm] = useState(false)
@@ -21,20 +19,12 @@ function ShowBathroomPage({ user }) {
             .then((res) => res.json())
             .then(data => {
                 setBathroom(data)
-                // for the map!
-                // doesn't call the API until bathroom is set
-                fetch(`https://maps.googleapis.com/maps/api/geocode/json?address="309 E Harrison St, Seattle, Seattle"&key=${APIKey}`)
-                .then(res => res.json())
-                .then(res => {
-                    console.log(res)
-                    setLocation({
-                        lat: res.results[0].geometry.location.lat,
-                        lng: res.results[0].geometry.location.lng
-                    })
-                    setIsLoaded(true)
-                    console.log("loaded!")
+                setLocation({
+                    lat: data.lat,
+                    lng: data.lng
                 })
-                
+                setIsLoaded(true)
+                console.log("loaded!")
                 
             });
     }, []);
@@ -46,19 +36,9 @@ function ShowBathroomPage({ user }) {
             .then((data) => setBathroom(data))
     }
 
-    // if (bathroom !== undefined && location == null) {
-    //         fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${bathroom.location}&key=${APIKey}`)
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             setLocation({
-    //                 lat: res.results[0].geometry.location.lat,
-    //                 lng: res.results[0].geometry.location.lng
-    //             })
-    //         })
-    // }
 
-    console.log(bathroom.location)
-    console.log(location)
+    // console.log(bathroom.location)
+    // console.log(location)
 
 
     function getToilets(rating) {
@@ -79,7 +59,7 @@ function ShowBathroomPage({ user }) {
         }
     }
 
-    console.log(bathroom.reviews)
+    // console.log(bathroom.reviews)
 
     return (
         <>

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 import "react-datepicker/dist/react-datepicker.css";
 
-function BathroomForm({ user }) {
+function BathroomForm({ user, APIKey }) {
 
     const navigate = useNavigate()
     
@@ -23,6 +23,8 @@ function BathroomForm({ user }) {
     const [bathroomFunctionRating, setBathroomFunctionRating] = useState(null)
     const [style, setStyle] = useState("")
     const [styleRating, setStyleRating] = useState(null)
+    const [lat, setLat] = useState(null)
+    const [lng, setLng] = useState(null)
 
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
@@ -39,13 +41,24 @@ function BathroomForm({ user }) {
 
         try {
 
+            fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${APIKey}`)
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res)
+                    setLat(res.results[0].geometry.location.lat)
+                    setLng(res.results[0].geometry.location.lng)
+                })
+
+
             const bathroomConfig = {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    location,
+                    location: location,
+                    lat: lat,
+                    lng: lng,
                     description: bathroomDescription,
                     public: publicBool,
                 }),

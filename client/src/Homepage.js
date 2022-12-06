@@ -1,12 +1,33 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ListView from "./components/ListViewHomepage"
+import MapView from "./components/MapViewHomepage"
 
-function Homepage({bathrooms}) {
+function Homepage({bathrooms, APIKey}) {
+
+    const [view, setView] = useState(false)
+
+    function viewClick () {
+        setView(!view)
+    }
 
     return(
         <div>
-            <h1>hello from homepage</h1>
+            <div>
+                <h2>all bathrooms</h2>
+                <button onClick={viewClick}>
+                    {view === false ? 
+                    <p>Map View</p>
+                    : 
+                    <p>List View</p>
+                    }
+                </button>
+            </div>
+            {view === true ? 
+            <MapView bathrooms={bathrooms} APIKey={APIKey}/>
+            :
             <ListView bathrooms={bathrooms}/>
+             }
+            
         </div>
     )
 }

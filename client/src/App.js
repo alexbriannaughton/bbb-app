@@ -15,6 +15,9 @@ function App() {
   const [user, setUser] = useState(null)
   const [bathrooms, setBathrooms] = useState([])
 
+  const APIKey = 
+  "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
+
   // console.log(user)
   // console.log(bathrooms)
 
@@ -44,7 +47,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Homepage bathrooms={bathrooms}/>}
+          element={<Homepage bathrooms={bathrooms} APIKey={APIKey}/>}
         />
         <Route
           path="/login"
@@ -58,7 +61,7 @@ function App() {
         />
         <Route
           path="/new-bathroom"
-          element={<NewBathroomPage user={user}/>}
+          element={<NewBathroomPage user={user} APIKey={APIKey}/>}
         />
         <Route
           path="/our-mission"
@@ -66,7 +69,7 @@ function App() {
         />
         <Route
           path={`/bathrooms/:bathroomid`}
-          element={<ShowBathroomPage user={user}/>}
+          element={<ShowBathroomPage user={user} APIKey={APIKey}/>}
         />
       </Routes>
 

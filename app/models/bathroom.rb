@@ -1,5 +1,5 @@
 class Bathroom < ApplicationRecord
-    has_many :reviews
+    has_many :reviews, dependent: :destroy
     has_many :users, through: :reviews
 
     validates :location, length: { minimum: 10 }
@@ -19,4 +19,5 @@ class Bathroom < ApplicationRecord
         else return "no reviews"
         end
     end
+
 end
