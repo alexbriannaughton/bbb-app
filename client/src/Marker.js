@@ -10,8 +10,6 @@ const Marker = (options) => {
     `<p>${options.bathroom.b_average_score}</p>` +
     `<p>${options.bathroom.public}</p>`
 
-    console.log(options.bathroom)
-
     const infowindow = new window.google.maps.InfoWindow({
         content: contentString
     })
