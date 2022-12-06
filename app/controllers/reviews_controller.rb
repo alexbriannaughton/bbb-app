@@ -9,6 +9,11 @@ class ReviewsController < ApplicationController
         render json: review
     end
 
+    def destroy
+        Review.find(params[:id]).destroy
+        head :no_content
+    end
+
     private
         
     def review_params

@@ -86,19 +86,21 @@
 }
 /* for show bathroom page review form */
 .review-form-div {
-  background-color: white;
-  outline: 2px dashed black;
-  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  margin-top: -23em;
+  margin-left: -10em;
+  border: 1px solid black;
+  background-color: white;
+  position: fixed;
 }
+
 .x-button {
   position:absolute;
   top: 0;
   right: 0;
   margin: 0;
-
+}
 
 
 /* for the OneBathrrom map */
