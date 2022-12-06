@@ -8,12 +8,11 @@ import "react-datepicker/dist/react-datepicker.css";
 function BathroomForm({ user }) {
 
     const navigate = useNavigate()
+    
     // bathroom fields
     const [location, setLocation] = useState("")
     const [bathroomDescription, setBathroomDescription] = useState("")
     const [publicBool, setPublicBool] = useState(null)
-    const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
 
     // review fields
     const [date, setDate] = useState(new Date())
@@ -25,10 +24,18 @@ function BathroomForm({ user }) {
     const [style, setStyle] = useState("")
     const [styleRating, setStyleRating] = useState(null)
 
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
+
     const handleSubmit = async (e) => {
 
         e.preventDefault()
         setIsLoading(true)
+
+        if (!user) {
+            setIsLoading(false)
+            return setErrors(["You need to login to upload a new bathroom!"])
+        }
 
         try {
 
@@ -88,7 +95,7 @@ function BathroomForm({ user }) {
     return (
         <form onSubmit={handleSubmit}>
 
-            <h2>bathroom fields:</h2>
+            {/* <h2>bathroom fields:</h2> */}
 
             <label>
                 Location:
@@ -131,7 +138,8 @@ function BathroomForm({ user }) {
             <label>False</label>
             <br></br>
 
-            <h2>Review fields:</h2>
+            {/* <h2>Review fields:</h2> */}
+
             <label>Date:</label>
             <DatePicker
                 selected={date}

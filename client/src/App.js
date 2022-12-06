@@ -66,7 +66,7 @@ function App() {
         />
         <Route
           path={`/bathrooms/:bathroomid`}
-          element={<ShowBathroomPage/>}
+          element={<ShowBathroomPage user={user}/>}
         />
       </Routes>
 
