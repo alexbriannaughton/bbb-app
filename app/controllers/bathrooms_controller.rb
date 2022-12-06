@@ -22,6 +22,6 @@ class BathroomsController < ApplicationController
     end
 
     def bathroom_params
-        params.permit(:location, :description, :public)
+        params.permit(:location, :description, :public, :lat, :lng)
     end
 end

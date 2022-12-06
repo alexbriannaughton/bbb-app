@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2022_12_02_204305) do
 
   create_table "bathrooms", force: :cascade do |t|
     t.string "location"
+    t.float "lat"
+    t.float "lng"
     t.text "description"
     t.boolean "public"
     t.string "image_url"
