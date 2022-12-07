@@ -31,7 +31,7 @@ function ShowBathroomPage({ user, APIKey }) {
                     lng: data.lng
                 })
                 setIsLoaded(true)
-       
+
             });
     }, [params.bathroomid]);
 
@@ -52,27 +52,30 @@ function ShowBathroomPage({ user, APIKey }) {
                 <h2>loading...</h2>
                 :
                 <div>
-
-                    <div>
-                        <p>{bathroom.location}</p>
-                        <p>{bathroom.description}</p>
-                        <p>{bathroom.public ? "Public bathroom" : "Private bathroom"}</p>
-                        <p>Average score: {bathroom.b_average_score}/5</p>
+                    <div id="OneBathroomTop">
+                        <div id="OneBathroomTopLeft">
+                            <div id="OneBathroomAbout">
+                                <h2>{bathroom.location}</h2>
+                                <p>{bathroom.description}</p>
+                                <p>{bathroom.public ? "Public bathroom" : ""}</p>
+                                <h3>Average score: {bathroom.b_average_score}/5</h3>
+                            </div>
+                            {/* <button onClick={(e) => setShowReviewForm(true)}>
+                                Write a review of this bathroom
+                            </button> */}
+                            <ReviewForm
+                                setShowReviewForm={setShowReviewForm}
+                                rerenderPage={rerenderPage}
+                                user={user}
+                                bathroomId={bathroom.id}
+                            />
+                        </div>
+                        <Wrapper classname="Wrapper" apiKey={APIKey} >
+                            <OneBathroomMap center={location} zoom={14}>
+                                <Marker position={location} bathroom={bathroom} />
+                            </OneBathroomMap>
+                        </Wrapper>
                     </div>
-
-                    <button onClick={(e) => setShowReviewForm(true)}>
-                        Write a review of this bathroom
-                    </button>
-
-                    {showReviewForm ?
-                        <ReviewForm
-                            setShowReviewForm={setShowReviewForm}
-                            rerenderPage={rerenderPage}
-                            user={user}
-                            bathroomId={bathroom.id}
-                        />
-                        : null}
-
                     <div>
                         <h3>Reviews:</h3>
                         {bathroom.reviews && bathroom.reviews.map((review) => (
@@ -110,13 +113,7 @@ function ShowBathroomPage({ user, APIKey }) {
                             </div>
                         ))}
                     </div>
-                    <div>
-                        <Wrapper classname="Wrapper" apiKey={APIKey} >
-                            <OneBathroomMap center={location} zoom={14}>
-                                <Marker position={location} bathroom={bathroom} />
-                            </OneBathroomMap>
-                        </Wrapper>
-                    </div>
+
                 </div>
             }
         </>
