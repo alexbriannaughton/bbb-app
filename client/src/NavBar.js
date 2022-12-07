@@ -22,7 +22,7 @@ function NavBar({ user, setUser }) {
                     <h1 id="BBBTitle">Better Bathroom Bureau</h1>
                     <h2 id="BBBSubtitle">helping people in Seattle find bathrooms around the city</h2>
                 </Link>
-                <p id="navAccount">link to "account/profile"?</p>
+                <Link to="/mirror" id="navAccount">Check your mirror</Link>
             </div>
             
             <div id="navbar">

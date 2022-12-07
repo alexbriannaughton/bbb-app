@@ -8,6 +8,7 @@ import LoginPage from './LoginPage';
 import NewBathroomPage from './NewBathroomPage';
 import MissionPage from './MissionPage';
 import ShowBathroomPage from './ShowBathroomPage';
+import MirrorPage from './MirrorPage';
 
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
   const [user, setUser] = useState(null)
   const [bathrooms, setBathrooms] = useState([])
 
-  const APIKey = 
-  "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
+  const APIKey =
+    "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
 
   // console.log(user)
   // console.log(bathrooms)
@@ -31,12 +32,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-      fetch('/bathrooms')
+    fetch('/bathrooms')
       .then(r => r.json())
       .then(b => setBathrooms(b))
   }, [])
 
-    
+
+
 
   return (
     <div className="App">
@@ -47,7 +49,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Homepage bathrooms={bathrooms} APIKey={APIKey}/>}
+          element={<Homepage bathrooms={bathrooms} APIKey={APIKey} />}
         />
         <Route
           path="/login"
@@ -57,11 +59,11 @@ function App() {
         />
         <Route
           path="/best"
-          element={<BestBathrooms bathrooms={bathrooms}/>}
+          element={<BestBathrooms bathrooms={bathrooms} />}
         />
         <Route
           path="/new-bathroom"
-          element={<NewBathroomPage user={user} APIKey={APIKey}/>}
+          element={<NewBathroomPage user={user} APIKey={APIKey} />}
         />
         <Route
           path="/our-mission"
@@ -69,7 +71,13 @@ function App() {
         />
         <Route
           path={`/bathrooms/:bathroomid`}
-          element={<ShowBathroomPage user={user} APIKey={APIKey}/>}
+          element={<ShowBathroomPage user={user} APIKey={APIKey} />}
+        />
+        <Route
+          path={`/mirror`}
+          element={<MirrorPage
+            user={user}
+            setUser={setUser}/>}
         />
       </Routes>
 
