@@ -3,26 +3,53 @@ import { Link } from "react-router-dom"
 
 function ListView ({ bathrooms }) {
 
-    const allBathrooms = bathrooms.map(bathroom => {
+    // const uniqueN = [... new Set(bathrooms.sort((a, b) => a.neighborhood.localeCompare(b.neighborhood)).map(bathroom => bathroom.neighborhood))]
+    
+    const unique = (value, index, self) => {
+        return self.indexOf(value) === index
+    }
+    const neighborhoods = bathrooms.sort((a, b) => a.neighborhood.localeCompare(b.neighborhood)).map(bathroom => bathroom.neighborhood)
+    const uniqueNeighborhoods = neighborhoods.filter(unique)
+    
+
+    const neighborhoodLinks = uniqueNeighborhoods.map(n => {
         return (
-            // clicking on the link doesn't work yet,
-            // need to work on the routing
-            <Link className="nounderline" to={`bathrooms/${bathroom.id}`} key={bathroom.id}>
-                <div className="LVOneBathroom">
-                    <p className="LVLocation">{bathroom.location}</p>
-                    <p className="LVDescription">{bathroom.description}</p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                </div>
-            </Link>
+            <a className="nounderline nb" href={`/#${n}`} key={n}>
+                <h2>{n}</h2>
+            </a> 
         )
     })
 
+    const newBathrooms = uniqueNeighborhoods.map(n => {
+        const filtered = bathrooms.filter(bathroom => bathroom.neighborhood === n)
+        return (
+            <div id={n}>
+                <h2>{n}</h2>
+                {filtered.map(bathroom => {
+                    return (
+                        <Link className="nounderline" to={`bathrooms/${bathroom.id}`} key={bathroom.id}>
+                            
+                            <div className="LVOneBathroom">
+                                <p className="LVLocation">{bathroom.location}</p>
+                                <p id="public">{bathroom.public === true ? "Public" : ""}</p>
+                                <p className="LVDescription">{bathroom.description}</p>
+                                <p></p>
+                            </div>
+                        </Link>
+                    )
+                })}
+            </div>
+        )
+    })
+
+    
+
+    
+
     return (
         <div>
-            <h1>list view</h1>
-            {allBathrooms}
+            <div id="neighborhoodLinks">{neighborhoodLinks}</div>
+            <div>{newBathrooms}</div>
         </div>
     )
 }

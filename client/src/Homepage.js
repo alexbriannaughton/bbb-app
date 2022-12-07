@@ -12,9 +12,10 @@ function Homepage({bathrooms, APIKey}) {
 
     return(
         <div>
-            <div>
-                <h2>all bathrooms</h2>
-                <button onClick={viewClick}>
+            <div id="homepageTop">
+                <h2 id="emptyjustforspacingpurposeslol"></h2>
+                <h2 id="HTTitle">all bathrooms</h2>
+                <button id="viewToggle" onClick={viewClick}>
                     {view === false ? 
                     <p>Map View</p>
                     : 

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2022_12_02_204305) do
     t.string "location"
     t.float "lat"
     t.float "lng"
+    t.string "neighborhood"
     t.text "description"
     t.boolean "public"
     t.string "image_url"
