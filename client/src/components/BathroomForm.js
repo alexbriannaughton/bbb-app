@@ -25,6 +25,7 @@ function BathroomForm({ user, APIKey }) {
     const [styleRating, setStyleRating] = useState(null)
     const [lat, setLat] = useState(null)
     const [lng, setLng] = useState(null)
+    const [neighborhood, setNeighborhood] = useState(null)
 
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
@@ -47,6 +48,7 @@ function BathroomForm({ user, APIKey }) {
                     console.log(res)
                     setLat(res.results[0].geometry.location.lat)
                     setLng(res.results[0].geometry.location.lng)
+                    setNeighborhood(res.results[0].address_components[2].long_name)
                 })
 
 
@@ -59,6 +61,7 @@ function BathroomForm({ user, APIKey }) {
                     location: location,
                     lat: lat,
                     lng: lng,
+                    neighborhood: neighborhood,
                     description: bathroomDescription,
                     public: publicBool,
                 }),

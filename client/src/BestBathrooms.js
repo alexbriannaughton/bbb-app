@@ -10,9 +10,9 @@ function BestBathrooms({bathrooms}) {
             <Link className="nounderline" to={`/bathrooms/${bathroom.id}`} key={bathroom.id}>
                 <div className="LVOneBathroom">
                     <p className="LVLocation">{bathroom.location}</p>
+                    <p id="public">{bathroom.public === true ? "Public" : ""}</p>
+                    <p id="neighborhood">{bathroom.neighborhood}</p>
                     <p className="LVDescription">{bathroom.description}</p>
-                    <p></p>
-                    <p></p>
                     <p></p>
                 </div>
             </Link>

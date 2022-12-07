@@ -4,6 +4,7 @@ class CreateBathrooms < ActiveRecord::Migration[6.1]
       t.string :location
       t.float :lat 
       t.float :lng
+      t.string :neighborhood
       t.text :description
       t.boolean :public
       t.string :image_url

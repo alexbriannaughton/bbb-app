@@ -2,6 +2,10 @@
   text-decoration: none;
 }
 
+.center {
+  text-align: center;
+}
+
 #HeaderTop {
   display: flex;
   flex-flow: row nowrap;
@@ -46,6 +50,23 @@
 }
 
 
+#homepageTop {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+}
+
+#emptyjustforspacingpurposeslol, #viewToggle {
+  width: 7%;
+}
+
+#HTTitle {
+  text-align: center;
+  width: 80%;
+}
+
 /* for list view */
 
 .nounderline {
@@ -53,9 +74,29 @@
   color: black;
 }
 
+#neighborhoodLinks {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  border: 5px solid black;
+  margin: 20px 300px;
+  gap: 0 20px;
+}
 
+#neighborhoodLinks h2 {
+  padding: 0;
+  margin: 10px;
+}
 
-.LVLocation, .LVDescription {
+#public {
+  width: 50px;
+}
+
+#neighborhood {
+  width: 150px;
+}
+
+.LVLocation, .LVDescription, #public, #neighborhood {
   display: inline-block;
   margin: 10px 20px;
 }

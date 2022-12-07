@@ -32,7 +32,7 @@ function MapView ({ bathrooms, APIKey }) {
 
     return (
         <div>
-            <h1>map view</h1>
+            <h1 class="center">map view</h1>
             <Wrapper classname="Wrapper" apiKey={APIKey} >
                 <AllBathroomsMap center={seattle} zoom={11}>
                     {allBathrooms}
