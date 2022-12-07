@@ -6,6 +6,7 @@ import OneBathroomMap from "./OneBathroomMap";
 import Marker from "./Marker";
 import DeleteButton from "./components/DeleteButton";
 import EditForm from "./components/EditForm";
+import getToilets from "./components/getToilets";
 
 function ShowBathroomPage({ user, APIKey }) {
 
@@ -30,9 +31,9 @@ function ShowBathroomPage({ user, APIKey }) {
                     lng: data.lng
                 })
                 setIsLoaded(true)
-                console.log("loaded!")
+       
             });
-    }, []);
+    }, [params.bathroomid]);
 
     function handleEditClick(review) {
         setShowEditForm(true)
@@ -44,27 +45,6 @@ function ShowBathroomPage({ user, APIKey }) {
             .then((res) => res.json())
             .then((data) => setBathroom(data))
     }
-
-
-    function getToilets(rating) {
-        if (rating === 1) {
-            return "🚽"
-        }
-        else if (rating === 2) {
-            return "🚽🚽"
-        }
-        else if (rating === 3) {
-            return "🚽🚽🚽"
-        }
-        else if (rating === 4) {
-            return "🚽🚽🚽🚽"
-        }
-        else if (rating === 5) {
-            return "🚽🚽🚽🚽🚽"
-        }
-    }
-
-
 
     return (
         <>
@@ -98,7 +78,7 @@ function ShowBathroomPage({ user, APIKey }) {
                         {bathroom.reviews && bathroom.reviews.map((review) => (
                             <div className="review-div">
                                 <p>{review.user.username} used this bathroom on {review.date}:</p>
-                                <p>{review.description}</p>
+                                <p>Description: {review.description}</p>
                                 <p>Cleanliness: <br />{review.cleanliness}</p>
                                 <p>Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
                                 <p>Function: <br />{review.function}</p>
