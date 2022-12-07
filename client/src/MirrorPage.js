@@ -1,12 +1,15 @@
 import getToilets from "./components/getToilets"
 import DeleteButton from "./components/DeleteButton"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-function MirrorPage({ user }) {
+function MirrorPage({ user, setUser }) {
 
     const [userReviews, setUserReviews] = useState()
     const [isLoaded, setIsLoaded] = useState(false)
     const [currentReview, setCurrentReview] = useState()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (user) {
@@ -16,13 +19,15 @@ function MirrorPage({ user }) {
     }, [user])
 
 
-    function handleDelete(deletedReview) {
-    
+    function handleDelete(e, deletedReview) {
+        e.stopPropagation()
         fetch(`/reviews/${deletedReview.id}`, { method: "DELETE" }).then((r) => {
             if (r.ok) {
-                const updatedReviews =
-                userReviews.filter((review) => review.id!==deletedReview.id)
-                setUserReviews(updatedReviews)
+                fetch("/me").then((r) => {
+                    if (r.ok) {
+                        r.json().then((user) => setUser(user));
+                    }
+                });
             }
         })
     }
@@ -35,12 +40,16 @@ function MirrorPage({ user }) {
         } else {
             return (
                 <div>
-                    <h2>Hello, {user.username}!</h2>
-
-                    <h3>Here are your reviews:</h3>
+                    <h2>Hello, {user.username}! You've written {user.reviews_total} reviews:</h2>
+                    <h3>You tend to have a {user.average_experience} star experience at the bathroom.</h3>
+                    <h4>You give an average cleanliness score of {user.average_cleanliness}.</h4>
+                    <h4>You give an average function score of {user.average_function}.</h4>
+                    <h4>You give an average style score of {user.average_style}.</h4>
 
                     {userReviews && userReviews.map((review) => (
-                        <div className="review-div">
+                        <div
+                            onClick={(e) => navigate(`/bathrooms/${review.bathroom_id}`)}
+                            className="review-div">
                             <p>{review.date}:</p>
                             <p>Description: {review.description}</p>
                             <p>Cleanliness: <br />{review.cleanliness}</p>
@@ -50,7 +59,7 @@ function MirrorPage({ user }) {
                             <p>Style: <br />{review.style}</p>
                             <p>Style Rating: {getToilets(review.style_rating)}</p>
                             <p>Final Score: {review.average_score}/5</p>
-                            <button onClick={(e) => handleDelete(review)}>
+                            <button onClick={(e) => handleDelete(e, review)}>
                                 Delete
                             </button>
                         </div>
