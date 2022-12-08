@@ -9,12 +9,11 @@ import EditForm from "./components/EditForm";
 import getToilets from "./components/getToilets";
 import FavoriteButton from "./components/FavoriteButton";
 
-function ShowBathroomPage({ user, APIKey }) {
+function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavorites, setUserFavorites }) {
 
     const params = useParams()
 
     const [bathroom, setBathroom] = useState({})
-    const [showReviewForm, setShowReviewForm] = useState(false)
     const [location, setLocation] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -24,6 +23,7 @@ function ShowBathroomPage({ user, APIKey }) {
 
     const [favInfo, setFavInfo] = useState(null)
 
+ 
     useEffect(() => {
         fetch(`/bathrooms/${params.bathroomid}`)
             .then((res) => res.json())
@@ -39,15 +39,15 @@ function ShowBathroomPage({ user, APIKey }) {
     }, [])
 
     useEffect(() => {
-        if (user && user.favorites) {
-            const fi = (user.favorites.find((fav) => {
+        if (userFavorites) {
+            const fi = (userFavorites.find((fav) => {
                 return fav.bathroom_id === parseInt(params.bathroomid)
             })) || null
             setFavInfo(fi)
         }
-        console.log(params.bathroomid)
     }, [user])
 
+console.log(userFavorites)
 
     function handleEditClick(review) {
         setShowEditForm(true)
@@ -93,11 +93,12 @@ function ShowBathroomPage({ user, APIKey }) {
                                 // favorites={user.favorites}
                                 favInfo={favInfo}
                                 setFavInfo={setFavInfo}
+                                userFavorites={userFavorites}
+                                setUserFavorites={setUserFavorites}
                             /> : null}
 
 
                             <ReviewForm
-                                setShowReviewForm={setShowReviewForm}
                                 rerenderPage={rerenderPage}
                                 user={user}
                                 bathroomId={bathroom.id}
@@ -125,6 +126,8 @@ function ShowBathroomPage({ user, APIKey }) {
                                     <DeleteButton
                                         reviewId={review.id}
                                         rerenderPage={rerenderPage}
+                                        setUserReviews={setUserReviews}
+                                        userReviews={userReviews}
                                     />
                                     : null}
 

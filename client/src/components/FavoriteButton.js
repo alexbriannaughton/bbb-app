@@ -1,16 +1,23 @@
 import { useState } from "react"
 
-function FavoriteButton({ user, bathroomid, favInfo, setFavInfo }) {
+function FavoriteButton({ user, bathroomid, favInfo, setFavInfo, setUserFavorites, userFavorites }) {
+
+    function addToFavs(favObj) {
+        setFavInfo(favObj)
+        setUserFavorites([...userFavorites, favObj])
+    }
 
     function handleHeartClick() {
         if (favInfo) {
 
             fetch(`/favorites/${favInfo.id}`, { method: "DELETE" }).then((r) => {
                 if (r.ok) {
+                    const updatedFavs =
+                        userFavorites.filter((fav) => fav.id !== favInfo.id)                    
+                    setUserFavorites(updatedFavs)
                     setFavInfo(null)
                 }
             })
-
         }
         else {
             const favData = {
@@ -25,9 +32,10 @@ function FavoriteButton({ user, bathroomid, favInfo, setFavInfo }) {
                 body: JSON.stringify(favData)
             }).then((r) => {
                 if (r.ok) {
-                    return r.json()
+                    r.json().then((favObj) => addToFavs(favObj))
+                    
                 }
-            }).then((favObj) => setFavInfo(favObj))
+            })
         }
     }
 

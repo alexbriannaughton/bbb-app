@@ -15,18 +15,20 @@ import MirrorPage from './MirrorPage';
 function App() {
 
   const [user, setUser] = useState([])
+  const [userReviews, setUserReviews] = useState()
+  const [userFavorites, setUserFavorites] = useState(null)
+
   const [bathrooms, setBathrooms] = useState([])
 
 
   const APIKey =
     "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
 
-  // console.log(user)
+
   // console.log(bathrooms)
 
   useEffect(() => {
     // auto-login
-  
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -41,6 +43,12 @@ function App() {
       .then(b => setBathrooms(b))
   }, [])
 
+  useEffect(() => {
+    if (user) {
+        setUserReviews(user.reviews)
+        setUserFavorites(user.favorites)
+    }
+}, [user])
 
 
 
@@ -75,13 +83,24 @@ function App() {
         />
         <Route
           path={`/bathrooms/:bathroomid`}
-          element={<ShowBathroomPage user={user} APIKey={APIKey} />}
+          element={<ShowBathroomPage
+            user={user}
+            APIKey={APIKey}
+            userReviews={userReviews}
+            setUserReviews={setUserReviews}
+            userFavorites={userFavorites}
+            setUserFavorites={setUserFavorites}/>}
         />
         <Route
           path={`/mirror`}
           element={<MirrorPage
             user={user}
-            setUser={setUser}/>}
+            setUser={setUser}
+            userReviews={userReviews}
+            setUserReviews={setUserReviews}
+            userFavorites={userFavorites}
+            setUserFavorites={setUserFavorites}
+            />}
         />
       </Routes>
 
