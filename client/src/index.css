@@ -533,4 +533,9 @@
   outline: 2px dashed black;
   padding: 20px 60px;
   font-size: 18px;
+
+/* user favorites */
+#user-fav-div {
+  outline: 2px dashed black;
+
 }

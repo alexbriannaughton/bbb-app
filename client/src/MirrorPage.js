@@ -5,22 +5,13 @@ import { useNavigate } from "react-router-dom"
 import useSound from "use-sound"
 import sinkRunning from "./audio/sink-running.mp3"
 
-function MirrorPage({ user, setUser }) {
+function MirrorPage({ user, setUser, userReviews, setUserReviews, userFavorites }) {
 
-    const [userReviews, setUserReviews] = useState()
-    const [isLoaded, setIsLoaded] = useState(false)
+    // const [userReviews, setUserReviews] = useState()
+    // const [isLoaded, setIsLoaded] = useState(false)
 
+    console.log(userFavorites)
     const navigate = useNavigate()
-
-
-
-    useEffect(() => {
-        if (user) {
-            setUserReviews(user.reviews)
-        }
-        setIsLoaded(true)
-    }, [user])
-
 
     function handleDelete(e, deletedReview) {
         e.stopPropagation()
@@ -34,8 +25,6 @@ function MirrorPage({ user, setUser }) {
             }
         })
     }
-
-    
 
     function renderMirrorPage() {
         if (!user) {
@@ -53,6 +42,15 @@ function MirrorPage({ user, setUser }) {
                             <h4>You give an average function score of {user.average_function}.</h4>
                             <h4>You give an average style score of {user.average_style}.</h4>
                         </div>
+                    </div>
+                    <h2>Your favs!</h2>
+                    <div id="user-fav-div">
+                        {userFavorites && userFavorites.map((fav) => (
+                            <div
+                                onClick={(e) => navigate(`/bathrooms/${fav.bathroom.id}`)}>
+                                <p>{fav.bathroom.description} in {fav.bathroom.neighborhood}</p>
+                            </div>
+                        ))}
                     </div>
                     <div id="AllMirrorReviews">
                     {userReviews && userReviews.map((review) => (
@@ -79,15 +77,11 @@ function MirrorPage({ user, setUser }) {
         }
     }
 
-
     return (
         <>
-            {isLoaded ? renderMirrorPage() : <h2>loading...</h2>}
+            {renderMirrorPage()}
         </>
     )
-
-
-
 
 }
 
