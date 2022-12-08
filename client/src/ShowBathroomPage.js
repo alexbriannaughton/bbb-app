@@ -23,7 +23,7 @@ function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavor
 
     const [favInfo, setFavInfo] = useState(null)
 
- 
+
     useEffect(() => {
         fetch(`/bathrooms/${params.bathroomid}`)
             .then((res) => res.json())
@@ -47,7 +47,7 @@ function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavor
         }
     }, [user])
 
-console.log(userFavorites)
+    console.log(userFavorites)
 
     function handleEditClick(review) {
         setShowEditForm(true)
@@ -87,18 +87,20 @@ console.log(userFavorites)
                                 <div id="scoreHeart">
                                     <h2>Average score: {bathroom.b_average_score}/5</h2>
                                     {user ? <FavoriteButton
-                                    user={user}
-                                    bathroomid={bathroom.id}
-                                    // favorites={user.favorites}
-                                    favInfo={favInfo}
-                                    setFavInfo={setFavInfo}
+                                        user={user}
+                                        bathroomid={bathroom.id}
+                                        // favorites={user.favorites}
+                                        favInfo={favInfo}
+                                        setFavInfo={setFavInfo}
+                                        userFavorites={userFavorites}
+                                        setUserFavorites={setUserFavorites}
                                     /> : null}
                                 </div>
-                                
+
                             </div>
 
 
-                            {user ? <FavoriteButton
+                            {/* {user ? <FavoriteButton
                                 user={user}
                                 bathroomid={bathroom.id}
                                 // favorites={user.favorites}
@@ -106,7 +108,7 @@ console.log(userFavorites)
                                 setFavInfo={setFavInfo}
                                 userFavorites={userFavorites}
                                 setUserFavorites={setUserFavorites}
-                            /> : null}
+                            /> : null} */}
 
 
                             <ReviewForm
@@ -122,42 +124,42 @@ console.log(userFavorites)
                     <div id="ReviewsSection">
                         <h1>Reviews:</h1>
                         <div id="AllReviewsDiv">
-                        {bathroom.reviews && bathroom.reviews.map((review) => (
-                            <div className="review-div">
-                                <p id="reviewTitle">{review.user.username} visited this bathroom on {review.date}:</p>
-                                <p>Description: <br /> {review.description}</p>
-                                <p>Cleanliness: <br />{review.cleanliness}</p>
-                                <p class="bigToilets">Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
-                                <p>Function: <br />{review.function}</p>
-                                <p class="bigToilets">Function Rating: {getToilets(review.function_rating)}</p>
-                                <p>Style: <br />{review.style}</p>
-                                <p class="bigToilets">Style Rating: {getToilets(review.style_rating)}</p>
-                                <p id="finalScore">Final Score: {review.average_score}/5</p>
-                                <div id="reviewButtons">
-                                {user && review.user_id === user.id ?
-                                    <DeleteButton
-                                        reviewId={review.id}
-                                        rerenderPage={rerenderPage}
-                                        setUserReviews={setUserReviews}
-                                        userReviews={userReviews}
-                                    />
-                                    : null}
+                            {bathroom.reviews && bathroom.reviews.map((review) => (
+                                <div className="review-div">
+                                    <p id="reviewTitle">{review.user.username} visited this bathroom on {review.date}:</p>
+                                    <p>Description: <br /> {review.description}</p>
+                                    <p>Cleanliness: <br />{review.cleanliness}</p>
+                                    <p class="bigToilets">Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
+                                    <p>Function: <br />{review.function}</p>
+                                    <p class="bigToilets">Function Rating: {getToilets(review.function_rating)}</p>
+                                    <p>Style: <br />{review.style}</p>
+                                    <p class="bigToilets">Style Rating: {getToilets(review.style_rating)}</p>
+                                    <p id="finalScore">Final Score: {review.average_score}/5</p>
+                                    <div id="reviewButtons">
+                                        {user && review.user_id === user.id ?
+                                            <DeleteButton
+                                                reviewId={review.id}
+                                                rerenderPage={rerenderPage}
+                                                setUserReviews={setUserReviews}
+                                                userReviews={userReviews}
+                                            />
+                                            : null}
 
-                                {user && review.user_id === user.id ?
-                                    <button onClick={(e) => handleEditClick(review)}>
-                                        Edit
-                                    </button>
-                                    : null}
-                                <EditForm
-                                    reviewId={review.id}
-                                    rerenderPage={rerenderPage}
-                                    showEditForm={showEditForm}
-                                    setShowEditForm={setShowEditForm}
-                                    currentReview={currentReview}
-                                />
+                                        {user && review.user_id === user.id ?
+                                            <button onClick={(e) => handleEditClick(review)}>
+                                                Edit
+                                            </button>
+                                            : null}
+                                        <EditForm
+                                            reviewId={review.id}
+                                            rerenderPage={rerenderPage}
+                                            showEditForm={showEditForm}
+                                            setShowEditForm={setShowEditForm}
+                                            currentReview={currentReview}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                         </div>
                     </div>
 

@@ -8,11 +8,12 @@ function DeleteButton({ reviewId, rerenderPage, setUserReviews, userReviews }) {
     function deleteReview() {
         
         fetch(`/reviews/${reviewId}`, { method: "DELETE" })
-            .then(rerenderPage()).then((r) => {
+            .then((r) => {
                 if (r.ok) {
                     const updatedReviews =
                     userReviews.filter((review) => review.id !== reviewId)
                     setUserReviews(updatedReviews)
+                    rerenderPage()
                 }
             })
         playToilet()
