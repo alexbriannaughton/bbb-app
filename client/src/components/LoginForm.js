@@ -31,8 +31,9 @@ function LoginForm({ setUser }) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleLoginSubmit}>
+        <div id="LFFlex">
+            <form id="LoginForm" onSubmit={handleLoginSubmit}>
+                <div class="loginLine">
                 <label>
                     Username:
                 </label>
@@ -41,17 +42,18 @@ function LoginForm({ setUser }) {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <br />
+                </div>
+                <div class="loginLine">
                 <label>
                     Password:
                 </label>
                 <input
-                    type="text"
+                    type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <br />
-                <button type="submit">
+                </div>
+                <button id="LoginSubmit" type="submit">
                     {isLoading ? "Loading..." : "Login"}
                 </button>
                 {errors.map((err) => (

@@ -48,53 +48,71 @@ function ReviewForm({ rerenderPage, user, bathroomId }) {
 
     return (
         <div className="review-form-div">
-            <form onSubmit={handleSubmit}>
-                <h3>Write your review:</h3>
-                <label>Date:</label>
-                <DatePicker
-                    selected={date}
-                    onChange={(date) => setDate(date)}
-                />
-                <label>Description:</label><br />
-                <textarea
-                    type="text"
-                    value={reviewDescription}
-                    onChange={(e) => setReviewDescription(e.target.value)}
-                /><br />
-                <label>Cleanliness:</label><br />
-                <textarea
-                    type="text"
-                    value={cleanliness}
-                    onChange={(e) => setCleanliness(e.target.value)}
-                /><br />
-                <label>Cleanliness Rating:</label><br />
+            <form id="RF" onSubmit={handleSubmit}>
+                {/* <h1 onClick={(e) => setShowReviewForm(false)} className="x-button">x</h1> */}
+                <h2 id="RFTitle">Write your review:</h2>
+                <div>
+                    <label>Date:</label>
+                    <DatePicker id="DatePicker"
+                        selected={date}
+                        onChange={(date) => setDate(date)}
+                    />
+                </div>
+                <div>
+                    <label>Description:</label> 
+                    <textarea
+                        type="text"
+                        value={reviewDescription}
+                        onChange={(e) => setReviewDescription(e.target.value)}
+                    /> 
+                </div>
+                <div>
+                    <label>Cleanliness:</label> 
+                    <textarea
+                        type="text"
+                        value={cleanliness}
+                        onChange={(e) => setCleanliness(e.target.value)}
+                    /> 
+                </div>
+                <div>
+                <label>Cleanliness Rating:</label> 
+
                 <RatingButton
                     rating={cleanlinessRating}
                     setRating={setCleanlinessRating}
-                /><br />
-                <label>Function:</label><br />
+                /> 
+                </div>
+                <div>
+                <label>Function:</label> 
                 <textarea
                     type="text"
                     value={bathroomFunction}
                     onChange={(e) => setBathroomFunction(e.target.value)}
-                /><br />
-                <label>Function Rating:</label><br />
+                /> 
+                </div>
+                <div>
+                <label>Function Rating:</label> 
                 <RatingButton
                     rating={bathroomFunctionRating}
                     setRating={setBathroomFunctionRating}
-                /><br />
-                <label>Style:</label><br />
+                /> 
+                </div>
+                <div>
+                <label>Style:</label> 
                 <textarea
                     type="text"
                     value={style}
                     onChange={(e) => setStyle(e.target.value)}
-                /><br />
-                <label>Function Rating:</label><br />
+                /> 
+                </div>
+                <div>
+                <label>Function Rating:</label> 
                 <RatingButton
                     rating={styleRating}
                     setRating={setStyleRating}
-                /><br />
-                <button type="submit">Submit</button>
+                /> 
+                </div>
+                <button id="RFSubmit" type="submit">Submit</button>
                 {errors.map((err) => (
                     <p key={err}>{err}</p>
                 ))}

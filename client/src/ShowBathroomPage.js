@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import ReviewForm from "./components/ReviewForm";
 import { Wrapper } from '@googlemaps/react-wrapper';
 import OneBathroomMap from "./OneBathroomMap";
-import Marker from "./Marker";
+import Marker from "./components/Marker"
 import DeleteButton from "./components/DeleteButton";
 import EditForm from "./components/EditForm";
 import getToilets from "./components/getToilets";
@@ -84,8 +84,19 @@ console.log(userFavorites)
                                 <h2>{bathroom.location}</h2>
                                 <p>{bathroom.description}</p>
                                 <p>{bathroom.public ? "Public bathroom" : ""}</p>
-                                <h3>Average score: {bathroom.b_average_score}/5</h3>
+                                <div id="scoreHeart">
+                                    <h2>Average score: {bathroom.b_average_score}/5</h2>
+                                    {user ? <FavoriteButton
+                                    user={user}
+                                    bathroomid={bathroom.id}
+                                    // favorites={user.favorites}
+                                    favInfo={favInfo}
+                                    setFavInfo={setFavInfo}
+                                    /> : null}
+                                </div>
+                                
                             </div>
+
 
                             {user ? <FavoriteButton
                                 user={user}
@@ -108,20 +119,21 @@ console.log(userFavorites)
                         {renderMap()}
 
                     </div>
-                    <div>
-                        <h3>Reviews:</h3>
+                    <div id="ReviewsSection">
+                        <h1>Reviews:</h1>
+                        <div id="AllReviewsDiv">
                         {bathroom.reviews && bathroom.reviews.map((review) => (
                             <div className="review-div">
-                                <p>{review.user.username} used this bathroom on {review.date}:</p>
-                                <p>Description: {review.description}</p>
+                                <p id="reviewTitle">{review.user.username} visited this bathroom on {review.date}:</p>
+                                <p>Description: <br /> {review.description}</p>
                                 <p>Cleanliness: <br />{review.cleanliness}</p>
-                                <p>Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
+                                <p class="bigToilets">Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
                                 <p>Function: <br />{review.function}</p>
-                                <p>Function Rating: {getToilets(review.function_rating)}</p>
+                                <p class="bigToilets">Function Rating: {getToilets(review.function_rating)}</p>
                                 <p>Style: <br />{review.style}</p>
-                                <p>Style Rating: {getToilets(review.style_rating)}</p>
-                                <p>Final Score: {review.average_score}/5</p>
-
+                                <p class="bigToilets">Style Rating: {getToilets(review.style_rating)}</p>
+                                <p id="finalScore">Final Score: {review.average_score}/5</p>
+                                <div id="reviewButtons">
                                 {user && review.user_id === user.id ?
                                     <DeleteButton
                                         reviewId={review.id}
@@ -143,9 +155,10 @@ console.log(userFavorites)
                                     setShowEditForm={setShowEditForm}
                                     currentReview={currentReview}
                                 />
-
+                                </div>
                             </div>
                         ))}
+                        </div>
                     </div>
 
                 </div>

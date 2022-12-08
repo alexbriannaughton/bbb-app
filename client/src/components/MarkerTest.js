@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const Marker = (options) => {
+const MarkerTest = (options) => {
     const [marker, setMarker] = useState();
 
     // this section until the useEffect is unnecessary if we're on a OneBathroomMap
@@ -47,4 +47,4 @@ const Marker = (options) => {
     return null;
   };
 
-  export default Marker
+  export default MarkerTest

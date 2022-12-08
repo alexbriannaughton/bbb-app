@@ -9,21 +9,25 @@ function LoginPage({ setUser }) {
     return (
         <div>
             {showLogin ? (
-                <>
+                <div id="LoginFlex">
                     <LoginForm
                         setUser={setUser}
                     />
-                    <p>don't have an account?</p>
-                    <button onClick={() => setShowLogin(false)}>sign up!</button>
-                </>
+                    <div id="signup">
+                        <p>don't have an account?</p>
+                        <button onClick={() => setShowLogin(false)}>sign up!</button>
+                    </div>
+                </div>
             ) : (
-                <>
+                <div id="LoginFlex">
                     <SignUpForm
                         setUser={setUser}
                     />
-                    <p>already have an account?</p>
-                    <button onClick={() => setShowLogin(true)}>log in</button>
-                </>
+                    <div id="signup">
+                        <p>already have an account?</p>
+                        <button onClick={() => setShowLogin(true)}>log in</button>
+                    </div>
+                </div>
             )}
         </div>
     )

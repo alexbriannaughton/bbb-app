@@ -72,7 +72,7 @@ function EditForm({ showEditForm, setShowEditForm, currentReview, rerenderPage }
             {showEditForm ?
 
                 <div>
-                    <div className="review-form-div">
+                    <div className="edit-form-div">
                         <form onSubmit={handleSubmit}>
                             <h1 onClick={(e) => setShowEditForm(false)} className="x-button">x</h1>
                             <h3>Edit your review:</h3>

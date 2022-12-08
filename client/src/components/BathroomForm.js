@@ -109,111 +109,109 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div id="ABContainer">
+            <form id="AddBathroomForm" onSubmit={handleSubmit}>
 
-            {/* <h2>bathroom fields:</h2> */}
+                {/* <h2>bathroom fields:</h2> */}
 
-            <label>
-                Address:
-            </label>
-            <br></br>
-            <input
-                type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-            />
-            <br />
-            <label>
-                Description:
-            </label>
-            <br></br>
-            <textarea
-                type="text"
-                value={bathroomDescription}
-                onChange={(e) => setBathroomDescription(e.target.value)}
-            />
-            <br />
-            <label>
-                Public?
-            </label>
-            <br></br>
-            <input
-                type="radio"
-                value={true}
-                onChange={(e) => setPublicBool(e.target.value)}
-                name="public"
-            />
-            <label>True</label>
-            <br />
-            <input
-                type="radio"
-                value={0}
-                onChange={(e) => setPublicBool(e.target.value)}
-                name="public"
-            />
-            <label>False</label>
-            <br></br>
+                <label>
+                    Address:
+                </label>
+                <input
+                    type="text"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                />
+                <label>
+                    Description:
+                </label>
+                <textarea
+                    type="text"
+                    value={bathroomDescription}
+                    onChange={(e) => setBathroomDescription(e.target.value)}
+                />
+                <div id="publicFlex">
+                    <label>
+                        Public?
+                    </label>
+                    <input
+                        className="radio"
+                        type="radio"
+                        value={true}
+                        onChange={(e) => setPublicBool(e.target.value)}
+                        name="public"
+                    />
+                    <label class="notblock">True</label>
+                    <input
+                        className="radio"
+                        type="radio"
+                        value={0}
+                        onChange={(e) => setPublicBool(e.target.value)}
+                        name="public"
+                    />
+                    <label class="notblock">False</label>
+                </div>
 
-            {/* <h2>Review fields:</h2> */}
+                {/* <h2>Review fields:</h2> */}
 
-            <label>Date:</label>
-            <DatePicker
-                selected={date}
-                onChange={(date) => setDate(date)}
-            />
-            <label>Description:</label><br />
-            <textarea
-                type="text"
-                value={reviewDescription}
-                onChange={(e) => setReviewDescription(e.target.value)}
-            /><br />
-            <label>Cleanliness:</label><br />
-            <textarea
-                type="text"
-                value={cleanliness}
-                onChange={(e) => setCleanliness(e.target.value)}
-            /><br />
-            <label>Cleanliness Rating:</label><br />
-            <RatingButton
-                rating={cleanlinessRating}
-                setRating={setCleanlinessRating}
-            /><br />
-            <label>Function:</label><br />
-            <textarea
-                type="text"
-                value={bathroomFunction}
-                onChange={(e) => setBathroomFunction(e.target.value)}
-            /><br />
-            <label>Function Rating:</label><br />
-            <RatingButton
-                rating={bathroomFunctionRating}
-                setRating={setBathroomFunctionRating}
-            /><br />
-            <label>Style:</label><br />
-            <textarea
-                type="text"
-                value={style}
-                onChange={(e) => setStyle(e.target.value)}
-            /><br />
-            <label>Function Rating:</label><br />
-            <RatingButton
-                rating={styleRating}
-                setRating={setStyleRating}
-            /><br />
+                <label>Date:</label>
+                <DatePicker
+                    selected={date}
+                    onChange={(date) => setDate(date)}
+                />
+                <label>Description:</label>
+                <textarea
+                    type="text"
+                    value={reviewDescription}
+                    onChange={(e) => setReviewDescription(e.target.value)}
+                />
+                <label>Cleanliness:</label>
+                <textarea
+                    type="text"
+                    value={cleanliness}
+                    onChange={(e) => setCleanliness(e.target.value)}
+                />
+                <label>Cleanliness Rating:</label>
+                <RatingButton
+                    rating={cleanlinessRating}
+                    setRating={setCleanlinessRating}
+                />
+                <label>Function:</label>
+                <textarea
+                    type="text"
+                    value={bathroomFunction}
+                    onChange={(e) => setBathroomFunction(e.target.value)}
+                />
+                <label>Function Rating:</label>
+                <RatingButton className="ratingButton"
+                    rating={bathroomFunctionRating}
+                    setRating={setBathroomFunctionRating}
+                />
+                <label>Style:</label>
+                <textarea
+                    type="text"
+                    value={style}
+                    onChange={(e) => setStyle(e.target.value)}
+                />
+                <label>Function Rating:</label>
+                <RatingButton
+                    rating={styleRating}
+                    setRating={setStyleRating}
+                />
 
 
 
 
 
-            <button type="submit">
-                {isLoading ? "Loading..." : "Submit"}
-            </button>
-            <br />
-            {errors.map((err) => (
-                <p key={err}>{err}</p>
-            ))}
-        </form>
-
+                <button id="ABSubmit" type="submit">
+                    {isLoading ? "Loading..." : "Submit"}
+                </button>
+                <br />
+                {errors.map((err) => (
+                    <p key={err}>{err}</p>
+                ))}
+            </form>
+        </div>
     )
 }
 
