@@ -40,16 +40,11 @@ function BathroomForm({ user, APIKey }) {
             return setErrors(["You need to login to upload a new bathroom!"])
         }
 
-        try {
+        try { 
 
-            fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${APIKey}`)
-                .then(res => res.json())
-                .then(res => {
-                    console.log(res)
-                    setLat(res.results[0].geometry.location.lat)
-                    setLng(res.results[0].geometry.location.lng)
-                    setNeighborhood(res.results[0].address_components[2].long_name)
-                })
+            const googleResp = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${APIKey}`)
+            const newGeocode = await googleResp.json()
+            console.log(newGeocode)
 
 
             const bathroomConfig = {
@@ -59,9 +54,9 @@ function BathroomForm({ user, APIKey }) {
                 },
                 body: JSON.stringify({
                     location: location,
-                    lat: lat,
-                    lng: lng,
-                    neighborhood: neighborhood,
+                    lat: newGeocode.results[0].geometry.location.lat,
+                    lng: newGeocode.results[0].geometry.location.lng,
+                    neighborhood: newGeocode.results[0].address_components[2].long_name,
                     description: bathroomDescription,
                     public: publicBool,
                 }),
@@ -99,6 +94,8 @@ function BathroomForm({ user, APIKey }) {
                 throw newReview.errors
             }
 
+            
+            // navigate(0)
             navigate("/")
             console.log(newReview, newBathroom)
 

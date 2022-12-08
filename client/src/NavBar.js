@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import useSound from 'use-sound';
+import sinkRunning from "./audio/sink-running.mp3"
 
 function NavBar({ user, setUser }) {
 
@@ -12,6 +14,8 @@ function NavBar({ user, setUser }) {
         }
     }
 
+    const [playSink] = useSound(sinkRunning)
+
     return (
         <div>
             <div id="HeaderTop">
@@ -22,7 +26,7 @@ function NavBar({ user, setUser }) {
                     <h1 id="BBBTitle">Better Bathroom Bureau</h1>
                     <h2 id="BBBSubtitle">helping people in Seattle find bathrooms around the city</h2>
                 </Link>
-                <Link to="/mirror" id="navAccount">Check your mirror</Link>
+                <Link to="/mirror" onClick={playSink} id="navAccount">Check your mirror</Link>
             </div>
             
             <div id="navbar">

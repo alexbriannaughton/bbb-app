@@ -2,6 +2,8 @@ import getToilets from "./components/getToilets"
 import DeleteButton from "./components/DeleteButton"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import useSound from "use-sound"
+import sinkRunning from "./audio/sink-running.mp3"
 
 function MirrorPage({ user, setUser }) {
 
@@ -32,6 +34,8 @@ function MirrorPage({ user, setUser }) {
         })
     }
 
+    
+
     function renderMirrorPage() {
         if (!user) {
             return (
@@ -40,11 +44,15 @@ function MirrorPage({ user, setUser }) {
         } else {
             return (
                 <div>
-                    <h2>Hello, {user.username}! You've written {user.reviews_total} reviews:</h2>
-                    <h3>You tend to have a {user.average_experience} star experience at the bathroom.</h3>
-                    <h4>You give an average cleanliness score of {user.average_cleanliness}.</h4>
-                    <h4>You give an average function score of {user.average_function}.</h4>
-                    <h4>You give an average style score of {user.average_style}.</h4>
+                    <div id="mirrorDiv">
+                        <div id="userInfo">
+                            <h2>Hello, {user.username}!<br></br> You've written {user.reviews_total} reviews.</h2>
+                            <h3>You tend to have a {user.average_experience} star experience at the bathroom.</h3>
+                            <h4>You give an average cleanliness score of {user.average_cleanliness}.</h4>
+                            <h4>You give an average function score of {user.average_function}.</h4>
+                            <h4>You give an average style score of {user.average_style}.</h4>
+                        </div>
+                    </div>
 
                     {userReviews && userReviews.map((review) => (
                         <div
