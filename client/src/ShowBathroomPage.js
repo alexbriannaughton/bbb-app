@@ -38,7 +38,7 @@ function ShowBathroomPage({ user, APIKey }) {
             });
         setIsLoaded(true)
     }, [])
-    console.log(location)
+
     useEffect(() => {
         if (user && user.favorites) {
             const fi = (user.favorites.find((fav) => {
