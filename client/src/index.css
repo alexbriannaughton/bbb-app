@@ -79,7 +79,8 @@
   flex-flow: row wrap;
   justify-content: space-evenly;
   border: 5px solid black;
-  margin: 20px 300px;
+  width: 800px;
+  margin: 20px auto;
   gap: 0 20px;
 }
 
@@ -88,15 +89,23 @@
   margin: 10px;
 }
 
-#public {
+.LVNTitle {
+  margin: 0 50px;
+}
+
+.LVPublic {
   width: 50px;
+}
+
+.LVScore {
+  width: 100px;
 }
 
 #neighborhood {
   width: 150px;
 }
 
-.LVLocation, .LVDescription, #public, #neighborhood {
+.LVLocation, .LVDescription, .LVPublic, .LVScore, #neighborhood {
   display: inline-block;
   margin: 10px 20px;
 }
@@ -152,7 +161,7 @@
   width: 50%;
 }
 
-/* for the OneBathrrom map */
+/* for the OneBathroom map */
 
 .Wrapper {
   height: 600px;
@@ -166,4 +175,28 @@
   width: 50%;
   margin: 40px 5%;
   border: 3px solid rgb(198, 146, 20);
+}
+
+/* for the Mirror */
+
+#userInfo {
+  text-align: center;
+  padding-top: 200px;
+}
+
+#userInfo h2, #userInfo h3, #userInfo h4 {
+  display: block;
+  background-color: white;
+  width: 350px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 30px;
+}
+
+#mirrorDiv {
+  background-image: url(./images/bbb_mirror.jpeg);
+  z-index: -1;
+  height: 800px;
+  width: 526px;
+  margin: 0 auto;
 }
