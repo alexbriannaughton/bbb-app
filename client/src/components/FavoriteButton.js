@@ -1,8 +1,8 @@
 import { useState } from "react"
+
 function FavoriteButton({ user, bathroomid, favInfo, setFavInfo }) {
 
     function handleHeartClick() {
-        console.log(favInfo)
         if (favInfo) {
 
             fetch(`/favorites/${favInfo.id}`, { method: "DELETE" }).then((r) => {

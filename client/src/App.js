@@ -67,7 +67,7 @@ function App() {
         />
         <Route
           path="/new-bathroom"
-          element={<NewBathroomPage user={user} APIKey={APIKey} />}
+          element={<NewBathroomPage setBathrooms={setBathrooms} user={user} APIKey={APIKey} />}
         />
         <Route
           path="/our-mission"
