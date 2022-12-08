@@ -9,7 +9,7 @@ import EditForm from "./components/EditForm";
 import getToilets from "./components/getToilets";
 import FavoriteButton from "./components/FavoriteButton";
 
-function ShowBathroomPage({ user, APIKey }) {
+function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews }) {
 
     const params = useParams()
 
@@ -125,6 +125,8 @@ function ShowBathroomPage({ user, APIKey }) {
                                     <DeleteButton
                                         reviewId={review.id}
                                         rerenderPage={rerenderPage}
+                                        setUserReviews={setUserReviews}
+                                        userReviews={userReviews}
                                     />
                                     : null}
 

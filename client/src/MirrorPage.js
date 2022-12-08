@@ -5,22 +5,12 @@ import { useNavigate } from "react-router-dom"
 import useSound from "use-sound"
 import sinkRunning from "./audio/sink-running.mp3"
 
-function MirrorPage({ user, setUser }) {
+function MirrorPage({ user, setUser, userReviews, setUserReviews }) {
 
-    const [userReviews, setUserReviews] = useState()
-    const [isLoaded, setIsLoaded] = useState(false)
+    // const [userReviews, setUserReviews] = useState()
+    // const [isLoaded, setIsLoaded] = useState(false)
 
     const navigate = useNavigate()
-
-
-
-    useEffect(() => {
-        if (user) {
-            setUserReviews(user.reviews)
-        }
-        setIsLoaded(true)
-    }, [user])
-
 
     function handleDelete(e, deletedReview) {
         e.stopPropagation()
@@ -34,8 +24,6 @@ function MirrorPage({ user, setUser }) {
             }
         })
     }
-
-    
 
     function renderMirrorPage() {
         if (!user) {
@@ -79,15 +67,11 @@ function MirrorPage({ user, setUser }) {
         }
     }
 
-
     return (
         <>
-            {isLoaded ? renderMirrorPage() : <h2>loading...</h2>}
+            {renderMirrorPage()}
         </>
     )
-
-
-
 
 }
 
