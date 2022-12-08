@@ -54,11 +54,11 @@ function MirrorPage({ user, setUser }) {
                             <h4>You give an average style score of {user.average_style}.</h4>
                         </div>
                     </div>
-
+                    <div id="AllMirrorReviews">
                     {userReviews && userReviews.map((review) => (
                         <div
                             onClick={(e) => navigate(`/bathrooms/${review.bathroom_id}`)}
-                            className="review-div">
+                            className="mirror-review-div">
                             <p>{review.date}:</p>
                             <p>Description: {review.description}</p>
                             <p>Cleanliness: <br />{review.cleanliness}</p>
@@ -73,7 +73,7 @@ function MirrorPage({ user, setUser }) {
                             </button>
                         </div>
                     ))}
-
+                    </div>
                 </div>
             )
         }

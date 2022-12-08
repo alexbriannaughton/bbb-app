@@ -33,11 +33,11 @@ function FavoriteButton({ user, bathroomid, favInfo, setFavInfo }) {
 
     return (
         <div>
-            <h2
+            <h1
                 onClick={handleHeartClick}
             >
                 {favInfo ? "♥" : "♡"}
-            </h2>
+            </h1>
         </div>
     )
 }

@@ -15,7 +15,14 @@
 }
 
 #navAccount, #navLogin {
-  width: 10%;
+  text-align: center;
+  padding: 5px 10px;
+  width: 60px;
+  border: 1px solid black;
+  border-radius: 30px;
+  color: white;
+  background-color: rgb(24, 104, 144);
+  font-weight: bold;
 }
 
 #BBBSubtitle{
@@ -23,13 +30,13 @@
   margin: 10px 0; 
   text-decoration: none;
   font-size: 18px;
-  color: black;
+  color: rgb(24, 104, 144);
 }
 
 #BBBTitle{
   text-align: center;
   font-size: 24px;
-  color: black;
+  color: rgb(24, 104, 144);
 }
 
 #navbar {
@@ -40,13 +47,15 @@
   border: 1px solid black;
   margin: 10px 0;
   padding: 10px 0;
+  background-color: rgb(24, 104, 144);
 }
 
 #navbar a {
-  padding: 10px;
-  border: 1px solid black;
+  padding: 5px 10px;
+  margin: 5px 0;
   border-radius: 20px;
   color: black;
+  background-color: white;
 }
 
 
@@ -59,7 +68,7 @@
 }
 
 #emptyjustforspacingpurposeslol, #viewToggle {
-  width: 7%;
+  width: 100px;
 }
 
 #HTTitle {
@@ -78,10 +87,17 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  border: 5px solid black;
+  border: 3px solid rgb(24, 104, 144);
+  border-radius: 20px;
   width: 800px;
-  margin: 20px auto;
+  margin: 20px auto 50px auto;
+  padding: 0 40px;
   gap: 0 20px;
+}
+
+.bigger {
+  width: 500px;
+  height: 100px;
 }
 
 #neighborhoodLinks h2 {
@@ -90,15 +106,20 @@
 }
 
 .LVNTitle {
-  margin: 0 50px;
+  color: white;
+  background-color: rgb(24, 104, 144);
+  width: auto;
+  padding: 5px 10px;
+  font-size: 18px;
 }
 
 .LVPublic {
   width: 50px;
+  font-weight: bolder;
 }
 
 .LVScore {
-  width: 100px;
+  width: 70px;
 }
 
 #neighborhood {
@@ -107,50 +128,47 @@
 
 .LVLocation, .LVDescription, .LVPublic, .LVScore, #neighborhood {
   display: inline-block;
-  margin: 10px 20px;
+  margin: 15px 10px;
 }
 
 .LVLocation {
-  width: 320px;
+  width: 300px;
 }
 
-/* for the new bathroom's review form */
-
-#toilet-button {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-.hover-on {
-  opacity: 100%;
-}
-.hover-off {
-  opacity: 50%;
+.LVDescription {
+  margin-left: 50px;
 }
 
-
-/* for show bathroom page, all reviews */
-.review-div {
-  outline: 2px dashed black;
-}
-/* for show bathroom page review form */
-.review-form-div {
-  /* top: 50%;
-  left: 50%;
-  margin-top: -23em;
-  margin-left: -10em; */
-  border: 1px solid black;
-  background-color: white;
-  /* position: fixed; */
+.OB {
+  margin: 0 50px;
 }
 
-.x-button {
-  position:absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
+#LVFooter {
+  text-align: center;
+  font-size: 20px;
+  width: 700px;
+  margin: 60px auto;
 }
+
+#LVFooter a, #LVFooter p {
+  display: inline;
+}
+
+#LVFooter a {
+  color: rgb(24, 104, 144)
+}
+
+/* for MapView */
+
+#AllBathroomsMap {
+  display: block;
+  height: 700px;
+  width: 90%;
+  margin: 40px 5%;
+  border: 3px solid rgb(24, 104, 144);
+}
+
+/* for ShowBathroomPage */
 
 #OneBathroomTop {
   display: flex;
@@ -161,21 +179,323 @@
   width: 50%;
 }
 
+#OneBathroomTopLeft h2, #OneBathroomTopLeft p {
+  text-align: center;
+  margin: 25px 0;
+}
+
+#scoreHeart {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: -40px 25% 0 25%;
+}
+
+/* all reviews */
+
+#ReviewsSection {
+  margin: 50px 20px;
+}
+
+#ReviewsSection h1 {
+  text-align: center;
+  margin: 40px auto;
+}
+
+#AllReviewsDiv {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  column-gap: 4%;
+}
+
+.review-div {
+  outline: 2px dashed black;
+  padding: 20px 60px;
+  font-size: 18px;
+}
+
+#reviewTitle, #finalScore {
+  text-align: center;
+}
+
+.bigToilets, #finalScore {
+  font-size: 24px;
+}
+
+#reviewButtons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+#reviewButtons button {
+  font-size: 20px;
+  padding: 5px 10px;
+}
+
+/* review form */
+.review-form-div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin: 0 auto;
+  width: 90%;
+  border: 1px solid black;
+}
+
+#RFTitle {
+  text-align: center;
+}
+
+#DatePicker {
+  width: 100px;
+  margin: 0 20px;
+}
+
+#RF div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+#RF textarea {
+  height: 40px;
+  width: 200px;
+}
+
+.x-button {
+  /* position:absolute;
+  top: 0;
+  right: 0; */
+  margin: 0;
+}
+
+#RFSubmit {
+  display: block;
+  margin: 20px auto;
+  font-size: 18px;
+  padding: 5px 10px;
+}
+
 /* for the OneBathroom map */
 
 .Wrapper {
   height: 600px;
   width: 600px;
   margin: 0 auto;
-  
 }
 
 .OneBathroomMap {
   height: 600px;
   width: 50%;
   margin: 40px 5%;
-  border: 3px solid rgb(198, 146, 20);
+  border: 3px solid rgb(24, 104, 144);
 }
+
+/* for Best Bathrooms */
+
+#BBTitle {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.BB {
+  margin: 20px;
+}
+
+/* for the AddBathroom Page  */
+
+#AddBathroomTitle {
+  text-align: center;
+  margin: 40px 0;
+}
+
+#ABContainer {
+  display: flex;
+}
+
+#AddBathroomForm {
+  display: inline-block;
+  padding: 20px 40px;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+
+#AddBathroomForm label {
+  display: block;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+#AddBathroomForm input {
+  height: 30px;
+  font-size: 20px;
+  width: 500px;
+}
+
+#AddBathroomForm textarea {
+  height: 60px;
+  font-size: 20px;
+  width: 500px;
+}
+
+#publicFlex {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+#AddBathroomForm .notblock {
+  display: inline;
+  width: 50px;
+}
+
+#AddBathroomForm .radio {
+  width: 20px;
+  margin: 0 20px;
+}
+
+#ABSubmit {
+  font-size: 24px;
+  margin: 40px 200px 10px 200px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+#toilet-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  zoom: 200%;
+}
+.hover-on {
+  opacity: 100%;
+}
+.hover-off {
+  opacity: 50%;
+}
+
+/* for the Mission page */
+
+#Mission h1 {
+  text-align: center;
+  margin: 80px 0;
+}
+
+#Mission h3, #Mission p {
+  margin: 10px 30%;
+}
+
+#Mission h3 {
+  color:rgb(24, 104, 144);
+  font-size: 24px;
+  margin: 30px 30%;
+}
+
+#Mission p {
+  font-size: 18px;;
+}
+
+/* for the Login */
+
+#LoginFlex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#LFFlex {
+  display: flex;
+  justify-content: center;
+  width: 450px;
+  margin: 40px 0;
+}
+
+#LoginForm {
+  border: 1px solid black;
+  padding: 20px 50px;
+}
+
+.loginLine {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  margin: 15px auto;
+  font-size: 20px;
+  height: 30px;
+}
+
+.loginLine input {
+  font-size: 18px;
+}
+
+#LoginSubmit {
+  display: block;
+  margin: 40px auto 10px auto;
+  height: 35px;
+  width: 120px;
+  font-size: 20px;
+}
+
+#signup {
+  width: 500px;
+  text-align: center;
+  font-size: 18px;
+}
+
+#signup button {
+  height: 35px;
+  width: 100px;
+  font-size: 18px;
+}
+
+/* for the sign up form */
+
+#SignupFlex {
+  display: flex;
+  flex-flow: row nowrap;
+  border: 1px solid black;
+  width: 450px;
+  justify-content: center;
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.SignupLine {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  margin: 15px auto;
+  font-size: 20px;
+  height: 30px;
+  text-align: right;
+}
+
+.SignupLine input {
+  font-size: 18px;
+}
+
+#SignupFlex button {
+  display: block;
+  margin: 40px auto 10px auto;
+  height: 35px;
+  width: 120px;
+  font-size: 20px;
+}
+
 
 /* for the Mirror */
 
@@ -199,4 +519,18 @@
   height: 800px;
   width: 526px;
   margin: 0 auto;
+}
+
+#AllMirrorReviews {
+  margin: 40px 20px;
+  display: grid;
+  grid-template-columns: 49% 49%;
+  column-gap: 2%;
+  row-gap: 20px;
+}
+
+.mirror-review-div {
+  outline: 2px dashed black;
+  padding: 20px 60px;
+  font-size: 18px;
 }

@@ -26,7 +26,7 @@ function NavBar({ user, setUser }) {
                     <h1 id="BBBTitle">Better Bathroom Bureau</h1>
                     <h2 id="BBBSubtitle">helping people in Seattle find bathrooms around the city</h2>
                 </Link>
-                <Link to="/mirror" onClick={playSink} id="navAccount">Check your mirror</Link>
+                <Link to="/mirror" onClick={playSink} id="navAccount">Account</Link>
             </div>
             
             <div id="navbar">

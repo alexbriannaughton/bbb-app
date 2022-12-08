@@ -12,7 +12,7 @@ function AllBathroomsMap({ center, zoom, children }) {
 
     return (
     <>
-        <div className="OneBathroomMap" ref={ref}
+        <div id="AllBathroomsMap" ref={ref}
         //  style={{ height: "500px", width: "500px" }}
          />
         {

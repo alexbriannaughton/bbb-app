@@ -27,7 +27,7 @@ function ListView ({ bathrooms }) {
         const filtered = bathrooms.filter(bathroom => bathroom.neighborhood === n)
         
         return (
-            <div id={n}>
+            <div id={n} className="OB">
                 <h2 className="LVNTitle">{n}</h2>
                 {filtered.map(bathroom => {
                     return (
@@ -38,7 +38,6 @@ function ListView ({ bathrooms }) {
                                 <p className="LVPublic">{bathroom.public === true ? "Public" : ""}</p>
                                 <p className="LVScore">{bathroom.b_average_score}</p>
                                 <p className="LVDescription">{bathroom.description}</p>
-                                <p></p>
                             </div>
                         </Link>
                     )
@@ -55,6 +54,11 @@ function ListView ({ bathrooms }) {
         <div>
             <div id="neighborhoodLinks">{neighborhoodLinks}</div>
             <div>{newBathrooms}</div>
+            <div id="LVFooter">
+                <p>You can help improve this resource by adding reviews to existing bathrooms, or by </p>
+                <Link to='/new-bathroom'>adding a bathroom</Link>
+                <p> that isn't already on this list. We appreciate your contributions!</p>
+            </div>
         </div>
     )
 }
