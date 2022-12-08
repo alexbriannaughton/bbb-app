@@ -200,3 +200,8 @@
   width: 526px;
   margin: 0 auto;
 }
+
+/* user favorites */
+#user-fav-div {
+  outline: 2px dashed black;
+}

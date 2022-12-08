@@ -16,13 +16,15 @@ function App() {
 
   const [user, setUser] = useState([])
   const [userReviews, setUserReviews] = useState()
+  const [userFavorites, setUserFavorites] = useState(null)
+
   const [bathrooms, setBathrooms] = useState([])
 
 
   const APIKey =
     "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
 
-  // console.log(user)
+
   // console.log(bathrooms)
 
   useEffect(() => {
@@ -44,9 +46,9 @@ function App() {
   useEffect(() => {
     if (user) {
         setUserReviews(user.reviews)
+        setUserFavorites(user.favorites)
     }
 }, [user])
-
 
 
 
@@ -85,7 +87,9 @@ function App() {
             user={user}
             APIKey={APIKey}
             userReviews={userReviews}
-            setUserReviews={setUserReviews}/>}
+            setUserReviews={setUserReviews}
+            userFavorites={userFavorites}
+            setUserFavorites={setUserFavorites}/>}
         />
         <Route
           path={`/mirror`}
@@ -93,7 +97,10 @@ function App() {
             user={user}
             setUser={setUser}
             userReviews={userReviews}
-            setUserReviews={setUserReviews}/>}
+            setUserReviews={setUserReviews}
+            userFavorites={userFavorites}
+            setUserFavorites={setUserFavorites}
+            />}
         />
       </Routes>
 
