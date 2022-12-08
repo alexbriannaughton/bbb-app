@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :favorites
   resources :reviews
   resources :bathrooms
   resources :users

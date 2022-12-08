@@ -2,6 +2,8 @@ class Bathroom < ApplicationRecord
     has_many :reviews, dependent: :destroy
     has_many :users, through: :reviews
 
+    has_many :favorites
+
     validates :location, length: { minimum: 10 }
     validates :description, length: { minimum: 10 }
     validate :validate_public

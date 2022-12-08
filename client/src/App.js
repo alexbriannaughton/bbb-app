@@ -13,7 +13,7 @@ import MirrorPage from './MirrorPage';
 
 function App() {
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState([])
   const [bathrooms, setBathrooms] = useState([])
 
   const APIKey =
@@ -24,11 +24,13 @@ function App() {
 
   useEffect(() => {
     // auto-login
+  
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
+
   }, []);
 
   useEffect(() => {

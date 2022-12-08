@@ -24,6 +24,11 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    # def liked?
+    #     user = User.find_by(id: session[:user_id])
+    #     Favorite.where(user_id: user.id)
+    # end
+
     private
 
     def user_params

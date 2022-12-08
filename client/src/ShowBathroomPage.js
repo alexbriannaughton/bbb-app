@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useParams } from 'react-router-dom'
 import ReviewForm from "./components/ReviewForm";
 import { Wrapper } from '@googlemaps/react-wrapper';
@@ -7,6 +7,7 @@ import Marker from "./Marker";
 import DeleteButton from "./components/DeleteButton";
 import EditForm from "./components/EditForm";
 import getToilets from "./components/getToilets";
+import FavoriteButton from "./components/FavoriteButton";
 
 function ShowBathroomPage({ user, APIKey }) {
 
@@ -21,19 +22,33 @@ function ShowBathroomPage({ user, APIKey }) {
 
     const [currentReview, setCurrentReview] = useState('')
 
+    const [favInfo, setFavInfo] = useState(null)
+
     useEffect(() => {
         fetch(`/bathrooms/${params.bathroomid}`)
             .then((res) => res.json())
             .then(data => {
                 setBathroom(data)
+
                 setLocation({
                     lat: data.lat,
                     lng: data.lng
                 })
-                setIsLoaded(true)
 
             });
-    }, [params.bathroomid]);
+        setIsLoaded(true)
+    }, [])
+    console.log(location)
+    useEffect(() => {
+        if (user && user.favorites) {
+            const fi = (user.favorites.find((fav) => {
+                return fav.bathroom_id === parseInt(params.bathroomid)
+            })) || null
+            setFavInfo(fi)
+        }
+        console.log(params.bathroomid)
+    }, [user])
+    // console.log(favInfo)
 
     function handleEditClick(review) {
         setShowEditForm(true)
@@ -44,6 +59,18 @@ function ShowBathroomPage({ user, APIKey }) {
         fetch(`/bathrooms/${params.bathroomid}`)
             .then((res) => res.json())
             .then((data) => setBathroom(data))
+    }
+
+    function renderMap() {
+        if (location) {
+            return (
+                <Wrapper classname="Wrapper" apiKey={APIKey} >
+                    <OneBathroomMap center={location} zoom={14}>
+                        <Marker position={location} bathroom={bathroom} />
+                    </OneBathroomMap>
+                </Wrapper>
+            )
+        }
     }
 
     return (
@@ -60,9 +87,16 @@ function ShowBathroomPage({ user, APIKey }) {
                                 <p>{bathroom.public ? "Public bathroom" : ""}</p>
                                 <h3>Average score: {bathroom.b_average_score}/5</h3>
                             </div>
-                            {/* <button onClick={(e) => setShowReviewForm(true)}>
-                                Write a review of this bathroom
-                            </button> */}
+
+                            {user ? <FavoriteButton
+                                user={user}
+                                bathroomid={bathroom.id}
+                                // favorites={user.favorites}
+                                favInfo={favInfo}
+                                setFavInfo={setFavInfo}
+                            /> : null}
+
+
                             <ReviewForm
                                 setShowReviewForm={setShowReviewForm}
                                 rerenderPage={rerenderPage}
@@ -70,11 +104,9 @@ function ShowBathroomPage({ user, APIKey }) {
                                 bathroomId={bathroom.id}
                             />
                         </div>
-                        <Wrapper classname="Wrapper" apiKey={APIKey} >
-                            <OneBathroomMap center={location} zoom={14}>
-                                <Marker position={location} bathroom={bathroom} />
-                            </OneBathroomMap>
-                        </Wrapper>
+
+                        {renderMap()}
+
                     </div>
                     <div>
                         <h3>Reviews:</h3>
