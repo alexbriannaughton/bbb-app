@@ -1,25 +1,5 @@
 import { useState } from "react"
 function FavoriteButton({ user, bathroomid, favInfo, setFavInfo }) {
-    const favorites = user ? user : null
-
-    console.log(favorites)
-    // function favFunc() {
-    //     const favs = []
-
-    //     favorites && favorites.forEach((fav) => {
-    //         for (let key in fav) {
-    //             favs.push(fav[key])
-    //         }
-    //     })
-
-    //     let f = favs.filter((element, index) => {
-    //         return index % 2 === 1
-    //     })
-
-    //     return f
-    // }
-
-
 
     function handleHeartClick() {
         console.log(favInfo)
