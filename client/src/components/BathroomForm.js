@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 import "react-datepicker/dist/react-datepicker.css";
 
-function BathroomForm({ user, APIKey }) {
+function BathroomForm({ user, APIKey, setBathrooms }) {
 
     const navigate = useNavigate()
     
@@ -23,9 +23,6 @@ function BathroomForm({ user, APIKey }) {
     const [bathroomFunctionRating, setBathroomFunctionRating] = useState(null)
     const [style, setStyle] = useState("")
     const [styleRating, setStyleRating] = useState(null)
-    const [lat, setLat] = useState(null)
-    const [lng, setLng] = useState(null)
-    const [neighborhood, setNeighborhood] = useState(null)
 
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
@@ -35,18 +32,21 @@ function BathroomForm({ user, APIKey }) {
         e.preventDefault()
         setIsLoading(true)
 
-        if (!user) {
-            setIsLoading(false)
-            return setErrors(["You need to login to upload a new bathroom!"])
-        }
+        // if (user === []) {
+        //     setIsLoading(false)
+        //     return setErrors(["You need to login to upload a new bathroom!"])
+        // }
 
         try { 
 
-            const googleResp = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${APIKey}`)
+            const googleResp = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location},seattle&key=${APIKey}`)
+
             const newGeocode = await googleResp.json()
-            console.log(newGeocode)
-
-
+            if (!googleResp.ok || newGeocode.results[0].geometry === undefined) {
+                throw ["You need to enter a valid address"]
+            }
+            
+            
             const bathroomConfig = {
                 method: "POST",
                 headers: {
@@ -65,7 +65,7 @@ function BathroomForm({ user, APIKey }) {
             const resp = await fetch("/bathrooms", bathroomConfig)
             const newBathroom = await resp.json()
             if (!resp.ok) {
-                throw newBathroom.errors
+                console.log(newBathroom.errors)
             }
 
             const reviewConfig = {
@@ -95,11 +95,14 @@ function BathroomForm({ user, APIKey }) {
             }
 
             
-            // navigate(0)
-            navigate("/")
-            console.log(newReview, newBathroom)
+            
+            navigate(`/bathrooms/${newBathroom.id}`)
+            const bResp = await fetch("/bathrooms")
+            const newBathrooms = await bResp.json()
+            setBathrooms(newBathrooms)
 
         } catch (error) {
+            console.log(error)
             setErrors(error)
             setIsLoading(false)
         }
@@ -111,7 +114,7 @@ function BathroomForm({ user, APIKey }) {
             {/* <h2>bathroom fields:</h2> */}
 
             <label>
-                Location:
+                Address:
             </label>
             <br></br>
             <input

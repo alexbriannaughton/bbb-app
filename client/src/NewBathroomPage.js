@@ -1,9 +1,9 @@
 import BathroomForm from "./components/BathroomForm"
 
-function NewBathroomPage({user, APIKey}) {
+function NewBathroomPage({user, APIKey, setBathrooms}) {
     return(
         <div>
-            <BathroomForm user={user} APIKey={APIKey}/>
+            <BathroomForm setBathrooms={setBathrooms} user={user} APIKey={APIKey}/>
         </div>
     )
 }

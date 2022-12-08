@@ -29,7 +29,6 @@ function ShowBathroomPage({ user, APIKey }) {
             .then((res) => res.json())
             .then(data => {
                 setBathroom(data)
-
                 setLocation({
                     lat: data.lat,
                     lng: data.lng
@@ -48,7 +47,7 @@ function ShowBathroomPage({ user, APIKey }) {
         }
         console.log(params.bathroomid)
     }, [user])
-    // console.log(favInfo)
+
 
     function handleEditClick(review) {
         setShowEditForm(true)

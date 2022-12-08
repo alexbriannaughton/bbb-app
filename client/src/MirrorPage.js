@@ -9,9 +9,10 @@ function MirrorPage({ user, setUser }) {
 
     const [userReviews, setUserReviews] = useState()
     const [isLoaded, setIsLoaded] = useState(false)
-    const [currentReview, setCurrentReview] = useState()
 
     const navigate = useNavigate()
+
+
 
     useEffect(() => {
         if (user) {

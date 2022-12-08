@@ -4,7 +4,7 @@ class Bathroom < ApplicationRecord
 
     has_many :favorites
 
-    validates :location, length: { minimum: 10 }
+    validates :location, length: { minimum: 6 }
     validates :description, length: { minimum: 10 }
     validate :validate_public
 
