@@ -23,7 +23,6 @@ function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavor
 
     const [favInfo, setFavInfo] = useState(null)
 
-
     useEffect(() => {
         fetch(`/bathrooms/${params.bathroomid}`)
             .then((res) => res.json())
@@ -45,9 +44,7 @@ function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavor
             })) || null
             setFavInfo(fi)
         }
-    }, [user])
-
-    console.log(userFavorites)
+    })
 
     function handleEditClick(review) {
         setShowEditForm(true)
