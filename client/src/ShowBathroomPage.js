@@ -50,7 +50,7 @@ function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavor
         setShowEditForm(true)
         setCurrentReview(review)
     }
-
+console.log(favInfo)
     function rerenderPage() {
         fetch(`/bathrooms/${params.bathroomid}`)
             .then((res) => res.json())

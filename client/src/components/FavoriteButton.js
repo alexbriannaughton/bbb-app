@@ -1,12 +1,10 @@
-import { useState } from "react"
-
 function FavoriteButton({ user, bathroomid, favInfo, setFavInfo, setUserFavorites, userFavorites }) {
 
     function addToFavs(favObj) {
         setFavInfo(favObj)
         setUserFavorites([...userFavorites, favObj])
     }
-console.log(favInfo)
+
     function handleHeartClick() {
         if (favInfo) {
 
