@@ -27,7 +27,7 @@ function ListView ({ bathrooms }) {
         const filtered = bathrooms.filter(bathroom => bathroom.neighborhood === n)
         
         return (
-            <div id={n} className="OB">
+            <div id={n} key={n} className="OB">
                 <h2 className="LVNTitle">{n}</h2>
                 {filtered.map(bathroom => {
                     return (

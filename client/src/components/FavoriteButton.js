@@ -40,6 +40,7 @@ function FavoriteButton({ user, bathroomid, favInfo, setFavInfo, setUserFavorite
     return (
         <div>
             <h1
+                className="heart"
                 onClick={handleHeartClick}
             >
                 {favInfo ? "♥" : "♡"}

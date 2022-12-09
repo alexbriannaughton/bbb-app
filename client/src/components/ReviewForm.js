@@ -106,7 +106,7 @@ function ReviewForm({ rerenderPage, user, bathroomId }) {
                 /> 
                 </div>
                 <div>
-                <label>Function Rating:</label> 
+                <label>Style Rating:</label> 
                 <RatingButton
                     rating={styleRating}
                     setRating={setStyleRating}
