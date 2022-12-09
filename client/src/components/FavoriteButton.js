@@ -6,7 +6,7 @@ function FavoriteButton({ user, bathroomid, favInfo, setFavInfo, setUserFavorite
         setFavInfo(favObj)
         setUserFavorites([...userFavorites, favObj])
     }
-
+console.log(favInfo)
     function handleHeartClick() {
         if (favInfo) {
 
