@@ -39,7 +39,16 @@ function ReviewForm({ rerenderPage, user, bathroomId }) {
         })
             .then(r => {
                 if (r.ok) {
-                    r.json().then((newReview) => rerenderPage())
+                    r.json().then((newReview) => {
+                        rerenderPage()
+                        setReviewDescription("")
+                        setCleanliness("")
+                        setCleanlinessRating(null)
+                        setBathroomFunction("")
+                        setBathroomFunctionRating(null)
+                        setStyle("")
+                        setStyleRating(null)
+                    })
                 } else {
                     r.json().then((err) => setErrors(err.errors))
                 }
@@ -106,7 +115,7 @@ function ReviewForm({ rerenderPage, user, bathroomId }) {
                 /> 
                 </div>
                 <div>
-                <label>Function Rating:</label> 
+                <label>Style Rating:</label> 
                 <RatingButton
                     rating={styleRating}
                     setRating={setStyleRating}

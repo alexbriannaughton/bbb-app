@@ -28,12 +28,12 @@ function LoginForm({ setUser }) {
                 r.json().then((err) => setErrors(err.errors))
             }
         })
-    }
+    } 
 
     return (
         <div id="LFFlex">
             <form id="LoginForm" onSubmit={handleLoginSubmit}>
-                <div class="loginLine">
+                <div className="loginLine">
                 <label>
                     Username:
                 </label>
@@ -43,7 +43,7 @@ function LoginForm({ setUser }) {
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 </div>
-                <div class="loginLine">
+                <div className="loginLine">
                 <label>
                     Password:
                 </label>

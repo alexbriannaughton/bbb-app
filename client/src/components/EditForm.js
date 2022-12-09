@@ -71,10 +71,11 @@ function EditForm({ showEditForm, setShowEditForm, currentReview, rerenderPage }
 
             {showEditForm ?
 
-                <div>
+                <div id="edit-form-container">
                     <div className="edit-form-div">
+                    <h4 onClick={(e) => setShowEditForm(false)} className="edit-x-button">x</h4>
                         <form onSubmit={handleSubmit}>
-                            <h1 onClick={(e) => setShowEditForm(false)} className="x-button">x</h1>
+        
                             <h3>Edit your review:</h3>
                             {/* <label>Date:</label>
                             <DatePicker
@@ -148,6 +149,7 @@ function EditForm({ showEditForm, setShowEditForm, currentReview, rerenderPage }
                                 onChange={handleChange}
                                 name="style"
                             /><br />
+                            <label>Style Rating:</label><br />
                             <div>
                                 {[...Array(5)].map((toilet, index) => {
                                     index += 1
@@ -166,7 +168,7 @@ function EditForm({ showEditForm, setShowEditForm, currentReview, rerenderPage }
                                     )
                                 })}
                             </div>
-                            <button type="submit">Submit</button>
+                            <button id="EFSubmit" type="submit">Submit</button>
                             {errors.map((err) => (
                                 <p key={err}>{err}</p>
                             ))}

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom"
+import React from "react";
+// import useState from "react";
 import AllBathroomsMap from "./AllBathroomsMap";
 import { Wrapper } from '@googlemaps/react-wrapper';
 import Marker from "./Marker"
@@ -17,7 +17,7 @@ function MapView ({ bathrooms, APIKey }) {
         }
 
         return (
-                <Marker key={bathroom.id} position={position} bathroom={bathroom}/>
+                <Marker key={bathroom.id} position={position} bathroom={bathroom} bathrooms={bathrooms}/>
         )
     })
 
