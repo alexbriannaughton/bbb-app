@@ -1,7 +1,11 @@
 import getToilets from "./components/getToilets"
 import { useNavigate } from "react-router-dom"
+import useSound from "use-sound";
+import toiletFlushing from "./audio/toilet-flushing.mp3"
 
 function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser }) {
+
+    const [playToilet] = useSound(toiletFlushing)
 
     console.log(userReviews)
     const navigate = useNavigate()
@@ -20,6 +24,7 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser 
                   })
             }
         })
+        playToilet()
     }
 
     function renderReviewStats() {

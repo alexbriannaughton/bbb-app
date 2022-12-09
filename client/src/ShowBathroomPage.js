@@ -112,6 +112,8 @@ console.log(favInfo)
                                 rerenderPage={rerenderPage}
                                 user={user}
                                 bathroomId={bathroom.id}
+                                userReviews={userReviews}
+                                setUserReviews={setUserReviews}
                             />
                         </div>
 

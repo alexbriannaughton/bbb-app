@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import RatingButton from "./RatingButton";
 
-function ReviewForm({ rerenderPage, user, bathroomId }) {
+function ReviewForm({ rerenderPage, user, bathroomId, userReviews, setUserReviews }) {
 
     const [date, setDate] = useState(new Date())
     const [reviewDescription, setReviewDescription] = useState("")
@@ -39,7 +39,11 @@ function ReviewForm({ rerenderPage, user, bathroomId }) {
         })
             .then(r => {
                 if (r.ok) {
-                    r.json().then((newReview) => rerenderPage())
+                    r.json().then((newReview) => {
+                     
+                        setUserReviews([...userReviews, newReview])
+                        rerenderPage()
+                    })
                 } else {
                     r.json().then((err) => setErrors(err.errors))
                 }
@@ -59,58 +63,58 @@ function ReviewForm({ rerenderPage, user, bathroomId }) {
                     />
                 </div>
                 <div>
-                    <label>Description:</label> 
+                    <label>Description:</label>
                     <textarea
                         type="text"
                         value={reviewDescription}
                         onChange={(e) => setReviewDescription(e.target.value)}
-                    /> 
+                    />
                 </div>
                 <div>
-                    <label>Cleanliness:</label> 
+                    <label>Cleanliness:</label>
                     <textarea
                         type="text"
                         value={cleanliness}
                         onChange={(e) => setCleanliness(e.target.value)}
-                    /> 
+                    />
                 </div>
                 <div>
-                <label>Cleanliness Rating:</label> 
+                    <label>Cleanliness Rating:</label>
 
-                <RatingButton
-                    rating={cleanlinessRating}
-                    setRating={setCleanlinessRating}
-                /> 
+                    <RatingButton
+                        rating={cleanlinessRating}
+                        setRating={setCleanlinessRating}
+                    />
                 </div>
                 <div>
-                <label>Function:</label> 
-                <textarea
-                    type="text"
-                    value={bathroomFunction}
-                    onChange={(e) => setBathroomFunction(e.target.value)}
-                /> 
+                    <label>Function:</label>
+                    <textarea
+                        type="text"
+                        value={bathroomFunction}
+                        onChange={(e) => setBathroomFunction(e.target.value)}
+                    />
                 </div>
                 <div>
-                <label>Function Rating:</label> 
-                <RatingButton
-                    rating={bathroomFunctionRating}
-                    setRating={setBathroomFunctionRating}
-                /> 
+                    <label>Function Rating:</label>
+                    <RatingButton
+                        rating={bathroomFunctionRating}
+                        setRating={setBathroomFunctionRating}
+                    />
                 </div>
                 <div>
-                <label>Style:</label> 
-                <textarea
-                    type="text"
-                    value={style}
-                    onChange={(e) => setStyle(e.target.value)}
-                /> 
+                    <label>Style:</label>
+                    <textarea
+                        type="text"
+                        value={style}
+                        onChange={(e) => setStyle(e.target.value)}
+                    />
                 </div>
                 <div>
-                <label>Function Rating:</label> 
-                <RatingButton
-                    rating={styleRating}
-                    setRating={setStyleRating}
-                /> 
+                    <label>Function Rating:</label>
+                    <RatingButton
+                        rating={styleRating}
+                        setRating={setStyleRating}
+                    />
                 </div>
                 <button id="RFSubmit" type="submit">Submit</button>
                 {errors.map((err) => (
