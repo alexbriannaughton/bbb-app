@@ -50,8 +50,6 @@ function App() {
     }
 },[user])
 
-
-
   return (
     <div className="App">
       <NavBar
@@ -67,6 +65,8 @@ function App() {
           path="/login"
           element={<LoginPage
             setUser={setUser}
+            setUserFavorites={setUserFavorites}
+            user={user}
           />}
         />
         <Route

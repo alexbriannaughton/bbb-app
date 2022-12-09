@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-function LoginForm({ setUser }) {
+function LoginForm({ setUser, setUserFavorites, user }) {
 
     const navigate = useNavigate()
 
@@ -22,7 +22,7 @@ function LoginForm({ setUser }) {
         }).then((r) => {
             setIsLoading(false)
             if (r.ok) {
-                r.json().then((user) => setUser(user))
+                r.json().then((user) => setUser(user)).then(user.favorites && setUserFavorites(user.favorites))
                 navigate("/")
             } else {
                 r.json().then((err) => setErrors(err.errors))

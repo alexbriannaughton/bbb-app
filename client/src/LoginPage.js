@@ -2,7 +2,7 @@ import { useState } from "react"
 import LoginForm from "./components/LoginForm"
 import SignUpForm from "./components/SignUpForm"
 
-function LoginPage({ setUser }) {
+function LoginPage({ setUser, setUserFavorites, user }) {
 
     const [showLogin, setShowLogin] = useState(true)
 
@@ -12,6 +12,8 @@ function LoginPage({ setUser }) {
                 <div id="LoginFlex">
                     <LoginForm
                         setUser={setUser}
+                        setUserFavorites={setUserFavorites}
+                        user={user}
                     />
                     <div id="signup">
                         <p>don't have an account?</p>
