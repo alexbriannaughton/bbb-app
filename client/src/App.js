@@ -31,16 +31,21 @@ function App() {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => {
+          setUser(user)
+        });
       }
     });
 
   }, []);
 
+
   useEffect(() => {
     fetch('/bathrooms')
       .then(r => r.json())
-      .then(b => setBathrooms(b))
+      .then(b => {
+        setBathrooms(b)
+      })
   }, [])
 
   useEffect(() => {

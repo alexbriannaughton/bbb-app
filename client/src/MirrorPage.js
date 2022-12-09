@@ -6,6 +6,7 @@ import { useEffect } from "react"
 
 function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser }) {
 
+
     const [playToilet] = useSound(toiletFlushing)
 
     const navigate = useNavigate()
@@ -52,9 +53,8 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser 
                         <h2>Your favorite bathrooms:</h2>
                         {console.log(userFavorites)}
                         {userFavorites[0].bathroom && userFavorites.map((fav) => (
-                            <div
-                                onClick={(e) => navigate(`/bathrooms/${fav.bathroom.id}`)}
-                                >
+                            <div key={fav.id}
+                                onClick={(e) => navigate(`/bathrooms/${fav.bathroom.id}`)}>
                                 <p className="OneFav">{fav.bathroom.neighborhood} - {fav.bathroom.description} </p>
                             </div>
                         ))}
@@ -84,18 +84,18 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser 
                     </div>
                     <div id="AllMirrorReviews">
                     {userReviews && userReviews.map((review) => (
-                        <div
+                        <div key={review.id}
                             onClick={(e) => navigate(`/bathrooms/${review.bathroom_id}`)}
                             className="mirror-review-div">
                             <p id="date">{review.date}:</p>
                             <p>Description: {review.description}</p>
                             <p>Cleanliness: <br />{review.cleanliness}</p>
-                            <p class="MRRating">Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
+                            <p className="MRRating">Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
                             <p>Function: <br />{review.function}</p>
-                            <p class="MRRating">Function Rating: {getToilets(review.function_rating)}</p>
+                            <p className="MRRating">Function Rating: {getToilets(review.function_rating)}</p>
                             <p>Style: <br />{review.style}</p>
-                            <p class="MRRating">Style Rating: {getToilets(review.style_rating)}</p>
-                            <p class="MRFinalScore">Final Score: {review.average_score}/5</p>
+                            <p className="MRRating">Style Rating: {getToilets(review.style_rating)}</p>
+                            <p className="MRFinalScore">Final Score: {review.average_score}/5</p>
                             <button id="MRDelete" onClick={(e) => handleDelete(e, review)}>
                                 Delete
                             </button>

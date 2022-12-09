@@ -113,7 +113,7 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
             <form id="AddBathroomForm" onSubmit={handleSubmit}>
 
                 {/* <h2>bathroom fields:</h2> */}
-                <div class="ABFlex">
+                <div className="ABFlex">
                     <div>
                         <label>
                             Street Address:
@@ -157,7 +157,7 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
                                 onChange={(e) => setPublicBool(e.target.value)}
                                 name="public"
                             />
-                            <label class="notblock">True</label>
+                            <label className="notblock">True</label>
                             <input
                                 className="radio"
                                 type="radio"
@@ -165,7 +165,7 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
                                 onChange={(e) => setPublicBool(e.target.value)}
                                 name="public"
                             />
-                            <label class="notblock">False</label>
+                            <label className="notblock">False</label>
                         </div>
                     </div>
                 </div>
@@ -173,6 +173,7 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
                 {/* <h2>Review fields:</h2> */}
                 
                 <label>Bathroom Description:</label>
+
                 <textarea
                     id="ABBD"
                     type="text"

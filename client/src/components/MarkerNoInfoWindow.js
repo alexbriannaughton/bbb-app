@@ -1,27 +1,27 @@
 import React, { useState } from "react"
 
-const MarkerTest = (options) => {
+const MarkerNoInfoWindow = (options) => {
     const [marker, setMarker] = useState();
 
     // this section until the useEffect is unnecessary if we're on a OneBathroomMap
-    const contentString = 
-    `<h3>${options.bathroom.location}</h3>` +
-    `<p>${options.bathroom.description}</p>` +
-    `<p>${options.bathroom.b_average_score}</p>` +
-    `<p>${options.bathroom.public}</p>`
+    // const contentString = 
+    // `<h3>${options.bathroom.location}</h3>` +
+    // `<p>${options.bathroom.description}</p>` +
+    // `<p>${options.bathroom.b_average_score}</p>` +
+    // `<p>${options.bathroom.public}</p>`
 
-    const infowindow = new window.google.maps.InfoWindow({
-        content: contentString
-    })
+    // const infowindow = new window.google.maps.InfoWindow({
+    //     content: contentString
+    // })
 
-    if (marker) {
-        marker.addListener("click", () => {
-            console.log("clickie!")
-            infowindow.open({
-                anchor: marker,
-            })
-        })
-    }
+    // if (marker) {
+    //     marker.addListener("click", () => {
+    //         console.log("clickie!")
+    //         infowindow.open({
+    //             anchor: marker,
+    //         })
+    //     })
+    // }
     
 
     React.useEffect(() => {
@@ -47,4 +47,4 @@ const MarkerTest = (options) => {
     return null;
   };
 
-  export default MarkerTest
+  export default MarkerNoInfoWindow

@@ -40,7 +40,6 @@ function ReviewForm({ rerenderPage, user, bathroomId, userReviews, setUserReview
             .then(r => {
                 if (r.ok) {
                     r.json().then((newReview) => {
-                     
                         setUserReviews([...userReviews, newReview])
                         rerenderPage()
                         fetch("/me").then((r) => {
@@ -48,6 +47,13 @@ function ReviewForm({ rerenderPage, user, bathroomId, userReviews, setUserReview
                               r.json().then((user) => setUser(user));
                             }
                           })
+                        setReviewDescription("")
+                        setCleanliness("")
+                        setCleanlinessRating(null)
+                        setBathroomFunction("")
+                        setBathroomFunctionRating(null)
+                        setStyle("")
+                        setStyleRating(null)
                     })
                 } else {
                     r.json().then((err) => setErrors(err.errors))
@@ -115,11 +121,11 @@ function ReviewForm({ rerenderPage, user, bathroomId, userReviews, setUserReview
                     />
                 </div>
                 <div>
-                    <label>Function Rating:</label>
+                    <label>Style Rating:</label> 
                     <RatingButton
                         rating={styleRating}
                         setRating={setStyleRating}
-                    />
+                    /> 
                 </div>
                 <button id="RFSubmit" type="submit">Submit</button>
                 {errors.map((err) => (

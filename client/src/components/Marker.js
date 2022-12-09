@@ -1,15 +1,13 @@
 import React, { useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
 
 const Marker = (options) => {
     const [marker, setMarker] = useState();
-    const navigate = useNavigate()
 
     // this section until the useEffect is unnecessary if we're on a OneBathroomMap
-    const contentString =
-    `<h3>${options.bathroom.location}</h3>` +
-    `<p>${options.bathroom.description}</p>` +
-    `<p>${options.bathroom.b_average_score}</p>`
+    const contentString = `<a href='bathrooms/${options.bathroom.id}'>${options.bathroom.location}</a>`
+    // `<h3>${options.bathroom.location}</h3>` +
+    // `<p>${options.bathroom.description}</p>` +
+    // `<p>${options.bathroom.b_average_score}</p>`
 
     const infowindow = new window.google.maps.InfoWindow({
         content: 

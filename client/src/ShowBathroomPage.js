@@ -1,9 +1,10 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
+// import { useReducer } from "react";
 import { useParams } from 'react-router-dom'
 import ReviewForm from "./components/ReviewForm";
 import { Wrapper } from '@googlemaps/react-wrapper';
 import OneBathroomMap from "./OneBathroomMap";
-import Marker from "./components/Marker"
+import MarkerNoInfoWindow from "./components/MarkerNoInfoWindow"
 import DeleteButton from "./components/DeleteButton";
 import EditForm from "./components/EditForm";
 import getToilets from "./components/getToilets";
@@ -44,13 +45,13 @@ function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavor
             })) || null
             setFavInfo(fi)
         }
-    })
+    }, [userFavorites, params.bathroomid])
 
     function handleEditClick(review) {
         setShowEditForm(true)
         setCurrentReview(review)
     }
-console.log(favInfo)
+// console.log(favInfo)
     function rerenderPage() {
         fetch(`/bathrooms/${params.bathroomid}`)
             .then((res) => res.json())
@@ -62,11 +63,61 @@ console.log(favInfo)
             return (
                 <Wrapper classname="Wrapper" apiKey={APIKey} >
                     <OneBathroomMap center={location} zoom={14}>
-                        <Marker position={location} bathroom={bathroom} />
+                        <MarkerNoInfoWindow position={location} bathroom={bathroom} />
                     </OneBathroomMap>
                 </Wrapper>
             )
         }
+    }
+
+    console.log(bathroom)
+
+    function renderReviews() {
+        // if (bathroom.reviews && bathroom.reviews.length) === 0 {
+            
+        // }
+        return (
+            bathroom.reviews && bathroom.reviews.map((review) => (
+                <div key={review.id} className="review-div">
+                    <p id="reviewTitle">{review.user.username} visited this bathroom on {review.date}:</p>
+                    <p>Description: <br /> {review.description}</p>
+                    <p>Cleanliness: <br />{review.cleanliness}</p>
+                    <p className="bigToilets">Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
+                    <p>Function: <br />{review.function}</p>
+                    <p className="bigToilets">Function Rating: {getToilets(review.function_rating)}</p>
+                    <p>Style: <br />{review.style}</p>
+                    <p className="bigToilets">Style Rating: {getToilets(review.style_rating)}</p>
+                    <p id="finalScore">Final Score: {review.average_score}/5</p>
+                    <div id="reviewButtons">
+                        {user && review.user_id === user.id ?
+                            <DeleteButton
+                                setUser={setUser}
+                                reviewId={review.id}
+                                rerenderPage={rerenderPage}
+                                setUserReviews={setUserReviews}
+                                userReviews={userReviews}
+                            />
+                            : null}
+
+                        {user && review.user_id === user.id ?
+                            <button onClick={(e) => handleEditClick(review)}>
+                                Edit
+                            </button>
+                            : null}
+                        
+                    </div>
+                    <EditForm
+                            reviewId={review.id}
+                            rerenderPage={rerenderPage}
+                            showEditForm={showEditForm}
+                            setShowEditForm={setShowEditForm}
+                            currentReview={currentReview}
+                        />
+                </div>
+            ))
+        )
+
+        
     }
 
     return (
@@ -123,45 +174,14 @@ console.log(favInfo)
                     </div>
                     <div id="ReviewsSection">
                         <h1>Reviews:</h1>
+                        {(bathroom.reviews && bathroom.reviews.length === 0) ? 
+                        <p id="uhoh">This bathroom doesn't have any reviews yet!</p>
+                        :
                         <div id="AllReviewsDiv">
-                            {bathroom.reviews && bathroom.reviews.map((review) => (
-                                <div className="review-div">
-                                    <p id="reviewTitle">{review.user.username} visited this bathroom on {review.date}:</p>
-                                    <p>Description: <br /> {review.description}</p>
-                                    <p>Cleanliness: <br />{review.cleanliness}</p>
-                                    <p class="bigToilets">Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
-                                    <p>Function: <br />{review.function}</p>
-                                    <p class="bigToilets">Function Rating: {getToilets(review.function_rating)}</p>
-                                    <p>Style: <br />{review.style}</p>
-                                    <p class="bigToilets">Style Rating: {getToilets(review.style_rating)}</p>
-                                    <p id="finalScore">Final Score: {review.average_score}/5</p>
-                                    <div id="reviewButtons">
-                                        {user && review.user_id === user.id ?
-                                            <DeleteButton
-                                                reviewId={review.id}
-                                                rerenderPage={rerenderPage}
-                                                setUserReviews={setUserReviews}
-                                                userReviews={userReviews}
-                                                setUser={setUser}
-                                            />
-                                            : null}
-
-                                        {user && review.user_id === user.id ?
-                                            <button onClick={(e) => handleEditClick(review)}>
-                                                Edit
-                                            </button>
-                                            : null}
-                                        <EditForm
-                                            reviewId={review.id}
-                                            rerenderPage={rerenderPage}
-                                            showEditForm={showEditForm}
-                                            setShowEditForm={setShowEditForm}
-                                            currentReview={currentReview}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
+                            {renderReviews()}
                         </div>
+                        }
+                        
                     </div>
 
                 </div>
