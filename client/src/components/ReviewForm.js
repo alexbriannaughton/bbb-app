@@ -61,7 +61,7 @@ function ReviewForm({ rerenderPage, user, bathroomId, userReviews, setUserReview
                 {/* <h1 onClick={(e) => setShowReviewForm(false)} className="x-button">x</h1> */}
                 <h2 id="RFTitle">Write your review:</h2>
                 <div>
-                    <label>Date:</label>
+                    <label>Date Used:</label>
                     <DatePicker id="DatePicker"
                         selected={date}
                         onChange={(date) => setDate(date)}

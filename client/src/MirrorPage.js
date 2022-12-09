@@ -47,10 +47,9 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser 
             return null
         } else if (userFavorites) {
             return (
-                <>
-                    
+                <>                  
                     <div id="user-fav-div">
-                        <h2>Your favorites:</h2>
+                        <h2>Your favorite bathrooms:</h2>
                         {console.log(userFavorites)}
                         {userFavorites[0].bathroom && userFavorites.map((fav) => (
                             <div
