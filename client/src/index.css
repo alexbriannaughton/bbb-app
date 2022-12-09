@@ -23,6 +23,20 @@
   color: white;
   background-color: rgb(24, 104, 144);
   font-weight: bold;
+  transition: all .25s ease-out;
+}
+
+#navAccount:hover, #navLogin:hover {
+  background-color: rgb(94, 176, 217);
+}
+
+
+
+#navbar a:hover {
+  background-color: rgb(181, 216, 234);
+}
+#navAccount:active, #navLogin:active, #navbar a:active {
+  background-color: black;
 }
 
 #BBBSubtitle{
@@ -56,6 +70,7 @@
   border-radius: 20px;
   color: black;
   background-color: white;
+  transition: all .25s ease-out;
 }
 
 

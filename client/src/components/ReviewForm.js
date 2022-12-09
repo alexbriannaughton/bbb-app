@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import RatingButton from "./RatingButton";
 
-function ReviewForm({ rerenderPage, user, bathroomId, userReviews, setUserReviews }) {
+function ReviewForm({ rerenderPage, user, bathroomId, userReviews, setUserReviews, setUser }) {
 
     const [date, setDate] = useState(new Date())
     const [reviewDescription, setReviewDescription] = useState("")
@@ -43,6 +43,11 @@ function ReviewForm({ rerenderPage, user, bathroomId, userReviews, setUserReview
                      
                         setUserReviews([...userReviews, newReview])
                         rerenderPage()
+                        fetch("/me").then((r) => {
+                            if (r.ok) {
+                              r.json().then((user) => setUser(user));
+                            }
+                          })
                     })
                 } else {
                     r.json().then((err) => setErrors(err.errors))

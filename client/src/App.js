@@ -85,6 +85,7 @@ function App() {
           path={`/bathrooms/:bathroomid`}
           element={<ShowBathroomPage
             user={user}
+            setUser={setUser}
             APIKey={APIKey}
             userReviews={userReviews}
             setUserReviews={setUserReviews}

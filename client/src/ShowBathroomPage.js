@@ -9,7 +9,7 @@ import EditForm from "./components/EditForm";
 import getToilets from "./components/getToilets";
 import FavoriteButton from "./components/FavoriteButton";
 
-function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavorites, setUserFavorites }) {
+function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavorites, setUserFavorites, setUser }) {
 
     const params = useParams()
 
@@ -114,6 +114,7 @@ console.log(favInfo)
                                 bathroomId={bathroom.id}
                                 userReviews={userReviews}
                                 setUserReviews={setUserReviews}
+                                setUser={setUser}
                             />
                         </div>
 
@@ -141,6 +142,7 @@ console.log(favInfo)
                                                 rerenderPage={rerenderPage}
                                                 setUserReviews={setUserReviews}
                                                 userReviews={userReviews}
+                                                setUser={setUser}
                                             />
                                             : null}
 
