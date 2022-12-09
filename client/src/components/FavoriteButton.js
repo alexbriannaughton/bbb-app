@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 function FavoriteButton({ user, bathroomid, favInfo, setFavInfo, setUserFavorites, userFavorites }) {
 
     function addToFavs(favObj) {

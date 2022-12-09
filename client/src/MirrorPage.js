@@ -1,29 +1,60 @@
 import getToilets from "./components/getToilets"
-import DeleteButton from "./components/DeleteButton"
-import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import useSound from "use-sound"
-import sinkRunning from "./audio/sink-running.mp3"
 
-function MirrorPage({ user, setUser, userReviews, setUserReviews, userFavorites }) {
+function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser }) {
 
-    // const [userReviews, setUserReviews] = useState()
-    // const [isLoaded, setIsLoaded] = useState(false)
-
-    console.log(userFavorites)
+    console.log(userReviews)
     const navigate = useNavigate()
 
     function handleDelete(e, deletedReview) {
         e.stopPropagation()
         fetch(`/reviews/${deletedReview.id}`, { method: "DELETE" }).then((r) => {
             if (r.ok) {
+                const updatedReviews =
+                    userReviews.filter((rev) => rev.id !== deletedReview.id)
+                setUserReviews(updatedReviews)
                 fetch("/me").then((r) => {
                     if (r.ok) {
-                        r.json().then((user) => setUser(user));
+                      r.json().then((user) => setUser(user));
                     }
-                });
+                  })
             }
         })
+    }
+
+    function renderReviewStats() {
+        if (user && userReviews && userReviews.length < 1) {
+            return null
+        } else {
+            return (
+                <>
+                    <h3>You tend to have a {user.average_experience} star experience at the bathroom.</h3>
+                    <h4>You give an average cleanliness score of {user.average_cleanliness}.</h4>
+                    <h4>You give an average function score of {user.average_function}.</h4>
+                    <h4>You give an average style score of {user.average_style}.</h4>
+                </>
+            )
+
+        }
+    }
+    function renderFavorites() {
+        if (user && userFavorites && userFavorites.length < 1) {
+            return null
+        } else if (userFavorites) {
+            return (
+                <>
+                    <h2>Your favs!</h2>
+                    <div id="user-fav-div">
+                        {userFavorites[0].bathroom && userFavorites.map((fav) => (
+                            <div
+                                onClick={(e) => navigate(`/bathrooms/${fav.bathroom.id}`)}>
+                                <p>{fav.bathroom.description} in {fav.bathroom.neighborhood}</p>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )
+        }
     }
 
     function renderMirrorPage() {
@@ -34,6 +65,7 @@ function MirrorPage({ user, setUser, userReviews, setUserReviews, userFavorites 
         } else {
             return (
                 <div>
+
                     <div id="mirrorTopFlex">
                         <div id="mirrorDiv">
                             <div id="userInfo">
