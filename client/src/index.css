@@ -11,7 +11,7 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 40px 0 40px;
+  margin: 10px 40px;
 }
 
 #navAccount, #navLogin {
@@ -68,7 +68,7 @@
 }
 
 #emptyjustforspacingpurposeslol, #viewToggle {
-  width: 100px;
+  width: 80px;
 }
 
 #HTTitle {
@@ -105,6 +105,14 @@
   margin: 10px;
 }
 
+.LVOneBathroom {
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin: 15px;
+  background-color: rgb(231, 235, 239);
+}
+
 .LVNTitle {
   color: white;
   background-color: rgb(24, 104, 144);
@@ -128,7 +136,7 @@
 
 .LVLocation, .LVDescription, .LVPublic, .LVScore, #neighborhood {
   display: inline-block;
-  margin: 15px 10px;
+  
 }
 
 .LVLocation {
@@ -140,7 +148,7 @@
 }
 
 .OB {
-  margin: 0 50px;
+  margin: 0 10px;
 }
 
 #LVFooter {
@@ -311,7 +319,7 @@
 
 #AddBathroomTitle {
   text-align: center;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
 #ABContainer {
@@ -323,6 +331,14 @@
   padding: 20px 40px;
   margin: 0 auto;
   border: 2px solid black;
+  width: 800px;
+}
+
+.ABFlex {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #AddBathroomForm label {
@@ -334,13 +350,17 @@
 #AddBathroomForm input {
   height: 30px;
   font-size: 20px;
-  width: 500px;
+  width: 350px;
 }
 
 #AddBathroomForm textarea {
-  height: 60px;
+  height: 50px;
   font-size: 20px;
   width: 500px;
+}
+
+#AddBathroomForm #ABBD {
+  width: 800px;
 }
 
 #publicFlex {
@@ -360,8 +380,9 @@
 }
 
 #ABSubmit {
+  display: block;
   font-size: 24px;
-  margin: 40px 200px 10px 200px;
+  margin: 40px auto 10px auto;
   padding: 10px;
   border-radius: 20px;
 }
@@ -384,19 +405,27 @@
 
 /* for the Mission page */
 
+#Mission {
+  display: block;
+  margin: 40px auto;
+  border: 20px ridge rgb(24, 104, 144);
+  border-radius: 100px;
+  width: 700px;
+  padding: 50px;
+}
+
 #Mission h1 {
   text-align: center;
-  margin: 80px 0;
 }
 
 #Mission h3, #Mission p {
-  margin: 10px 30%;
+  margin: 10px 10%;
 }
 
 #Mission h3 {
   color:rgb(24, 104, 144);
   font-size: 24px;
-  margin: 30px 30%;
+  margin: 30px 10%;
 }
 
 #Mission p {
@@ -513,12 +542,20 @@
   border-radius: 30px;
 }
 
+#mirrorTopFlex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+  margin: 40px;
+}
+
 #mirrorDiv {
   background-image: url(./images/bbb_mirror.jpeg);
   z-index: -1;
   height: 800px;
   width: 526px;
-  margin: 0 auto;
 }
 
 #AllMirrorReviews {
@@ -532,11 +569,45 @@
 .mirror-review-div {
   outline: 2px dashed black;
   padding: 20px 60px;
+  font-size: 16px;
+}
+
+#date {
+  text-align: center;
+}
+
+.MRRating {
+  font-size: 20px;
+}
+
+.MRFinalScore {
+  font-size: 24px;
+  text-align: center;
+}
+
+#MRDelete {
+  display: block;
+  margin: 20px auto;
+  padding: 5px 10px;
   font-size: 18px;
 }
 
 /* user favorites */
 #user-fav-div {
-  outline: 2px dashed black;
+  outline: 15px ridge rgb(24, 104, 144);
+  height: auto;
+  text-align: center;
+  width: 400px;
+  padding: 30px;
+}
 
+/* #user-fav-div p {
+  padding: 40px;
+} */
+
+.OneFav {
+  border: 2px solid rgb(24, 104, 144);
+  padding: 10px;
+  border-radius: 10px;
+  color: rgb(24, 104, 144)
 }
