@@ -43,12 +43,13 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser 
         } else if (userFavorites) {
             return (
                 <>
-                    <h2>Your favs!</h2>
+                    
                     <div id="user-fav-div">
+                        <h2>Your favorites:</h2>
                         {userFavorites[0].bathroom && userFavorites.map((fav) => (
                             <div
                                 onClick={(e) => navigate(`/bathrooms/${fav.bathroom.id}`)}>
-                                <p>{fav.bathroom.description} in {fav.bathroom.neighborhood}</p>
+                                <p className="OneFav">{fav.bathroom.neighborhood} - {fav.bathroom.description} </p>
                             </div>
                         ))}
                     </div>
@@ -70,22 +71,10 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser 
                         <div id="mirrorDiv">
                             <div id="userInfo">
                                 <h2>Hello, {user.username}!<br></br> You've written {user.reviews_total} reviews.</h2>
-                                <h3>You tend to have a {user.average_experience} star experience at the bathroom.</h3>
-                                <h4>You give an average cleanliness score of {user.average_cleanliness}.</h4>
-                                <h4>You give an average function score of {user.average_function}.</h4>
-                                <h4>You give an average style score of {user.average_style}.</h4>
+                                {renderReviewStats()}
                             </div>
                         </div>
-                        
-                        <div id="user-fav-div">
-                        <h2>Your favorites:</h2>
-                            {userFavorites && userFavorites.map((fav) => (
-                                <div
-                                    onClick={(e) => navigate(`/bathrooms/${fav.bathroom.id}`)}>
-                                    <p className="OneFav">{fav.bathroom.neighborhood} - {fav.bathroom.description} </p>
-                                </div>
-                            ))}
-                        </div>
+                        {renderFavorites()}
                     </div>
                     <div id="AllMirrorReviews">
                     {userReviews && userReviews.map((review) => (
