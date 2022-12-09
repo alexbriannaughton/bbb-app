@@ -126,7 +126,7 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
                         />
                     </div>
                     <div>
-                        <label>Date:</label>
+                        <label>Date Used:</label>
                         <DatePicker
                             selected={date}
                             onChange={(date) => setDate(date)}
@@ -172,7 +172,8 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
                 
                 {/* <h2>Review fields:</h2> */}
                 
-                <label>Bathroom description:</label>
+                <label>Bathroom Description:</label>
+
                 <textarea
                     id="ABBD"
                     type="text"

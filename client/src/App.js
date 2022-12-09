@@ -16,7 +16,7 @@ function App() {
 
   const [user, setUser] = useState([])
   const [userReviews, setUserReviews] = useState()
-  const [userFavorites, setUserFavorites] = useState(null)
+  const [userFavorites, setUserFavorites] = useState()
 
   const [bathrooms, setBathrooms] = useState([])
 
@@ -90,6 +90,7 @@ function App() {
           path={`/bathrooms/:bathroomid`}
           element={<ShowBathroomPage
             user={user}
+            setUser={setUser}
             APIKey={APIKey}
             userReviews={userReviews}
             setUserReviews={setUserReviews}
