@@ -48,7 +48,7 @@ function App() {
         setUserReviews(user.reviews)
         setUserFavorites(user.favorites)
     }
-}, [user])
+},[user])
 
 
 

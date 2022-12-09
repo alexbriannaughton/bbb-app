@@ -1,7 +1,7 @@
 import getToilets from "./components/getToilets"
 import { useNavigate } from "react-router-dom"
 
-function MirrorPage({ user, userReviews, setUserReviews, userFavorites }) {
+function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser }) {
 
     console.log(userReviews)
     const navigate = useNavigate()
@@ -13,12 +13,17 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites }) {
                 const updatedReviews =
                     userReviews.filter((rev) => rev.id !== deletedReview.id)
                 setUserReviews(updatedReviews)
+                fetch("/me").then((r) => {
+                    if (r.ok) {
+                      r.json().then((user) => setUser(user));
+                    }
+                  })
             }
         })
     }
 
     function renderReviewStats() {
-        if (user && userReviews.length < 1) {
+        if (user && userReviews && userReviews.length < 1) {
             return null
         } else {
             return (
@@ -32,11 +37,10 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites }) {
 
         }
     }
-
     function renderFavorites() {
-        if (user && userFavorites.length < 1) {
+        if (user && userFavorites && userFavorites.length < 1) {
             return null
-        } else {
+        } else if (userFavorites) {
             return (
                 <>
                     <h2>Your favs!</h2>
