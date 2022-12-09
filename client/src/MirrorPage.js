@@ -2,12 +2,12 @@ import getToilets from "./components/getToilets"
 import { useNavigate } from "react-router-dom"
 import useSound from "use-sound";
 import toiletFlushing from "./audio/toilet-flushing.mp3"
+import { useEffect } from "react"
 
 function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser }) {
 
     const [playToilet] = useSound(toiletFlushing)
 
-    console.log(userReviews)
     const navigate = useNavigate()
 
     function handleDelete(e, deletedReview) {
@@ -51,9 +51,11 @@ function MirrorPage({ user, userReviews, setUserReviews, userFavorites, setUser 
                     
                     <div id="user-fav-div">
                         <h2>Your favorites:</h2>
+                        {console.log(userFavorites)}
                         {userFavorites[0].bathroom && userFavorites.map((fav) => (
                             <div
-                                onClick={(e) => navigate(`/bathrooms/${fav.bathroom.id}`)}>
+                                onClick={(e) => navigate(`/bathrooms/${fav.bathroom.id}`)}
+                                >
                                 <p className="OneFav">{fav.bathroom.neighborhood} - {fav.bathroom.description} </p>
                             </div>
                         ))}
