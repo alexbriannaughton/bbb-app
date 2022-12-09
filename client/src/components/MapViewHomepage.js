@@ -16,15 +16,6 @@ function MapView ({ bathrooms, APIKey }) {
             lng: bathroom.lng
         }
 
-        // // fetch(`https://maps.googleapis.com/maps /api/geocode/json?address=${bathroom.location}&key=${`)
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             console.log(res)
-        //             coordinates = {
-        //                 lat: res.results[0].geometry.location.lat,
-        //                 lng: res.results[0].geometry.location.lng
-        //             }
-        //         })
         return (
                 <Marker key={bathroom.id} position={position} bathroom={bathroom}/>
         )
@@ -32,8 +23,7 @@ function MapView ({ bathrooms, APIKey }) {
 
     return (
         <div>
-            <h1 class="center">map view</h1>
-            <Wrapper classname="Wrapper" apiKey={APIKey} >
+            <Wrapper classname="WrapperHomePage" apiKey={APIKey} >
                 <AllBathroomsMap center={seattle} zoom={11}>
                     {allBathrooms}
                 </AllBathroomsMap>

@@ -105,6 +105,15 @@
   width: 320px;
 }
 
+/* for the MapView */
+
+
+.AllBathroomsMap {
+  height: 900px;
+  width: 90%;
+  margin: 0 auto;
+}
+
 /* for the new bathroom's review form */
 
 #toilet-button {
@@ -146,10 +155,13 @@
 #OneBathroomTop {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2%;
 }
 
 #OneBathroomTopLeft {
-  width: 50%;
+  width: 45%;
 }
 
 /* for the OneBathrrom map */
@@ -164,6 +176,6 @@
 .OneBathroomMap {
   height: 600px;
   width: 50%;
-  margin: 40px 5%;
+  margin: 40px 2%;
   border: 3px solid rgb(198, 146, 20);
 }

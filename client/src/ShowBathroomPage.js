@@ -46,6 +46,8 @@ function ShowBathroomPage({ user, APIKey }) {
             .then((data) => setBathroom(data))
     }
 
+    
+
     return (
         <>
             {isLoaded === false ?
@@ -80,28 +82,32 @@ function ShowBathroomPage({ user, APIKey }) {
                         <h3>Reviews:</h3>
                         {bathroom.reviews && bathroom.reviews.map((review) => (
                             <div className="review-div">
-                                <p>{review.user.username} used this bathroom on {review.date}:</p>
-                                <p>Description: {review.description}</p>
-                                <p>Cleanliness: <br />{review.cleanliness}</p>
-                                <p>Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
-                                <p>Function: <br />{review.function}</p>
-                                <p>Function Rating: {getToilets(review.function_rating)}</p>
-                                <p>Style: <br />{review.style}</p>
-                                <p>Style Rating: {getToilets(review.style_rating)}</p>
-                                <p>Final Score: {review.average_score}/5</p>
+                                { showEditForm === false ? 
+                                    <div>
+                                        <p>{review.user.username} used this bathroom on {review.date}:</p>
+                                        <p>Description: {review.description}</p>
+                                        <p>Cleanliness: <br />{review.cleanliness}</p>
+                                        <p>Cleanliness Rating: {getToilets(review.cleanliness_rating)}</p>
+                                        <p>Function: <br />{review.function}</p>
+                                        <p>Function Rating: {getToilets(review.function_rating)}</p>
+                                        <p>Style: <br />{review.style}</p>
+                                        <p>Style Rating: {getToilets(review.style_rating)}</p>
+                                        <p>Final Score: {review.average_score}/5</p>
 
-                                {user && review.user_id === user.id ?
-                                    <DeleteButton
-                                        reviewId={review.id}
-                                        rerenderPage={rerenderPage}
-                                    />
-                                    : null}
+                                        {user && review.user_id === user.id ?
+                                            <DeleteButton
+                                                reviewId={review.id}
+                                                rerenderPage={rerenderPage}
+                                            />
+                                            : null}
 
-                                {user && review.user_id === user.id ?
-                                    <button onClick={(e) => handleEditClick(review)}>
-                                        Edit
-                                    </button>
-                                    : null}
+                                        {user && review.user_id === user.id ?
+                                            <button onClick={(e) => handleEditClick(review)}>
+                                                Edit
+                                            </button>
+                                            : null}
+                                    </div>
+                                    :
                                 <EditForm
                                     reviewId={review.id}
                                     rerenderPage={rerenderPage}
@@ -109,7 +115,7 @@ function ShowBathroomPage({ user, APIKey }) {
                                     setShowEditForm={setShowEditForm}
                                     currentReview={currentReview}
                                 />
-
+                            }
                             </div>
                         ))}
                     </div>

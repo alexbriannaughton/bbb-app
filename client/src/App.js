@@ -17,7 +17,7 @@ function App() {
   const [bathrooms, setBathrooms] = useState([])
 
   const APIKey =
-    "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
+    // "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
 
   // console.log(user)
   // console.log(bathrooms)
