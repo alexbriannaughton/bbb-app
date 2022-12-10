@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by(id: session[:user_id])
-        render json: user, include: ['favorites', 'favorites.bathroom', 'reviews']
+        render json: user, include: ['reviews']
     end
 
     # def liked?
