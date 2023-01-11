@@ -56,7 +56,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      setUserReviews(user.reviews)
+      // setUserReviews(user.reviews)
       fetch(`/users/${user.id}/favorites`).then((r) => {
         if (r.ok) {
           r.json().then((favs) => {

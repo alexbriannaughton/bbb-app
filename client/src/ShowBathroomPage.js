@@ -70,8 +70,6 @@ function ShowBathroomPage({ user, APIKey, setUserReviews, userReviews, userFavor
         }
     }
 
-    console.log(bathroom)
-
     function renderReviews() {
         // if (bathroom.reviews && bathroom.reviews.length) === 0 {
             
