@@ -4,6 +4,8 @@ class Bathroom < ApplicationRecord
 
     has_many :favorites
 
+    acts_as_mappable
+
     validates :location, length: { minimum: 6 }
     validates :description, length: { minimum: 10 }
     validate :validate_public
@@ -20,6 +22,10 @@ class Bathroom < ApplicationRecord
             return (all_scores.sum / all_scores.size).round(1)
         else return "no reviews"
         end
+    end
+
+    def self.nearby(lat, lng)
+        Bathroom.by_distance(:origin => [lat, lng]).limit(10)
     end
 
 end

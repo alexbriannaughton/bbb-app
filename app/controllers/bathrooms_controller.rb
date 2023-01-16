@@ -16,7 +16,7 @@ class BathroomsController < ApplicationController
     end
 
     def near_me
-        
+        render json: Bathroom.nearby(params[:lat], params[:lng])
     end
 
     private

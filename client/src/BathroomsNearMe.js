@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Wrapper } from '@googlemaps/react-wrapper'
-
+import Marker from './components/Marker'
 import BathroomNearMeMap from './components/BathroomNearMeMap'
 import BathroomsNearMeMarkers from './components/BathroomsNearMeMarkers'
 
@@ -9,6 +9,17 @@ function BathroomsNearMe({ APIKey }) {
     const [currLocation, setCurrLocation] = useState({})
     const [bathrooms, setBathrooms] = useState([])
 
+    const allBathrooms = bathrooms.map(bathroom => {
+        let position = {
+            lat: bathroom.lat,
+            lng: bathroom.lng
+        }
+
+        return (
+            <Marker key={bathroom.id} position={position} bathroom={bathroom} bathrooms={bathrooms} />
+        )
+    })
+
 
     useEffect(() => {
         getLocationJs()
@@ -16,17 +27,18 @@ function BathroomsNearMe({ APIKey }) {
 
     const getLocationJs = () => {
         navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position.coords)
             const { latitude, longitude } = position.coords;
             setCurrLocation({ lat: latitude, lng: longitude })
         })
     }
-// console.log(currLocation.lat)
-//     useEffect(() => {
-//         fetch(`/bathrooms-near-me/${currLocation.lat}/${currLocation.lng}`)
-//         .then(r => r.json())
-//         .then(b => setBathrooms(b))
-//     },[])
+
+    useEffect(() => {
+        fetch(`/bathrooms-near-me/${currLocation.lat}/${currLocation.lng}`)
+            .then(r => r.json())
+            .then(b => setBathrooms(b))
+    }, [])
+
+    console.log(bathrooms)
 
     function renderMap() {
         if (currLocation) {
@@ -38,11 +50,12 @@ function BathroomsNearMe({ APIKey }) {
                     <BathroomNearMeMap
                         center={currLocation}
                         zoom={14}
-                            >
-                            <BathroomsNearMeMarkers
-                                position={currLocation}
-                                // bathroom={bathroom}
-                            />
+                    >
+                        <BathroomsNearMeMarkers
+                            position={currLocation}
+                        // bathroom={bathroom}
+                        />
+                        {allBathrooms}
                     </BathroomNearMeMap>
                 </Wrapper >
             )
