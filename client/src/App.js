@@ -9,6 +9,7 @@ import NewBathroomPage from './NewBathroomPage';
 import MissionPage from './MissionPage';
 import ShowBathroomPage from './ShowBathroomPage';
 import MirrorPage from './MirrorPage';
+import BathroomsNearMe from './BathroomsNearMe';
 
 
 
@@ -36,7 +37,6 @@ function App() {
         });
       }
     });
-
   }, []);
 
 
@@ -88,6 +88,10 @@ function App() {
         <Route
           path="/best"
           element={<BestBathrooms bathrooms={bathrooms} />}
+        />
+        <Route
+          path="/near-me"
+          element={<BathroomsNearMe APIKey={APIKey}/>}
         />
         <Route
           path="/new-bathroom"

@@ -28,12 +28,15 @@ function NavBar({ user, setUser }) {
                 </Link>
                 <Link to="/mirror" onClick={playSink} id="navAccount">Account</Link>
             </div>
-            
+
             <div id="navbar">
+                <Link to="/near-me">
+                    Bathrooms near me
+                </Link>
                 <Link to="/best">
                     Best Bathrooms
                 </Link>
-                
+
                 <Link to="/new-bathroom">
                     Add New Bathroom
                 </Link>

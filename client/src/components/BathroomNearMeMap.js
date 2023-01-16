@@ -1,6 +1,7 @@
 import React from "react"
 
-function OneBathroomMap({ center, zoom, children }) {
+function BathroomNearMeMap( {center, zoom, children }) {
+
     const ref = React.useRef(null)
     const [map, setMap] = React.useState()
 
@@ -10,9 +11,9 @@ function OneBathroomMap({ center, zoom, children }) {
         }
     }, [ref, map])
 
-    return (
+    return(
         <>
-            <div className="OneBathroomMap" ref={ref}
+                  <div className="OneBathroomMap" ref={ref}
             //  style={{ height: "500px", width: "500px" }}
             />
             {
@@ -28,5 +29,4 @@ function OneBathroomMap({ center, zoom, children }) {
     )
 }
 
-
-export default OneBathroomMap
+export default BathroomNearMeMap

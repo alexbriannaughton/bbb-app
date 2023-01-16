@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 const Marker = (options) => {
     const [marker, setMarker] = useState();
+  
 
     // this section until the useEffect is unnecessary if we're on a OneBathroomMap
     const contentString = `<a href='bathrooms/${options.bathroom.id}'>${options.bathroom.location}</a>`

@@ -15,6 +15,10 @@ class BathroomsController < ApplicationController
         render json: bathroom, status: :created
     end
 
+    def near_me
+        
+    end
+
     private
 
     def find_bathroom
