@@ -1,0 +1,12 @@
+version: 0.2
+
+phases: 
+  pre_build: 
+    commands:
+      - echo Installing gems...
+      - bundle install
+  build:
+    commands:
+      - echo Migrating and seeding db...
+      - bundle exec rake db:migrate
+      - bundle exec rake db:seed
