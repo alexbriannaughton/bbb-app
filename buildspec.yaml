@@ -3,6 +3,7 @@ version: 0.2
 env:
   variables:
     RUBY_VERSION: '2.7.4'
+    DATABASE_URL: 'awseb-e-ze8ipv2mwm-stack-awsebrdsdatabase-i9fj95a8jlso.ciob878rraz8.us-west-2.rds.amazonaws.com'
 
 phases: 
   install:
@@ -19,5 +20,6 @@ phases:
   build:
     commands:
       - echo Migrating and seeding db...
+      - bundle exec rake db:create
       - bundle exec rake db:migrate
       - bundle exec rake db:seed
