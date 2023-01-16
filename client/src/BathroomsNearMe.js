@@ -14,12 +14,12 @@ function BathroomsNearMe({ APIKey }) {
             lat: bathroom.lat,
             lng: bathroom.lng
         }
-
         return (
             <Marker key={bathroom.id} position={position} bathroom={bathroom} bathrooms={bathrooms} />
         )
     })
 
+console.log(currLocation)
 
     useEffect(() => {
         getLocationJs()
@@ -38,10 +38,8 @@ function BathroomsNearMe({ APIKey }) {
             .then(b => setBathrooms(b))
     }, [])
 
-    console.log(bathrooms)
-
     function renderMap() {
-        if (currLocation) {
+        if (Object.values(currLocation).length !== 0) {
             return (
                 <Wrapper
                     classname="Wrapper"
