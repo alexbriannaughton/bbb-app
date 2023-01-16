@@ -21,12 +21,12 @@ function BathroomsNearMe({ APIKey }) {
             setCurrLocation({ lat: latitude, lng: longitude })
         })
     }
-console.log(currLocation.lat)
-    useEffect(() => {
-        fetch(`/bathrooms-near-me/${currLocation.lat}/${currLocation.lng}`)
-        .then(r => r.json())
-        .then(b => setBathrooms(b))
-    },[])
+// console.log(currLocation.lat)
+//     useEffect(() => {
+//         fetch(`/bathrooms-near-me/${currLocation.lat}/${currLocation.lng}`)
+//         .then(r => r.json())
+//         .then(b => setBathrooms(b))
+//     },[])
 
     function renderMap() {
         if (currLocation) {
