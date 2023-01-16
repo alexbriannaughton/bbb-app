@@ -7,14 +7,13 @@ env:
 phases: 
   install:
     commands:
-      - echo Installing ruby version $RUBY_VERSION
-      - rbenv install $RUBY_VERSION
-      - rbenv global $RUBY_VERSION
-      - gem install bundler
+      - echo Installing dependencies...........
+      - apt-get update -y
+      - apt-get install -y ruby-dev build-essential libpq-dev nodejs
   pre_build: 
     commands:
       - echo Installing gems...
-      - bundle exec install
+      - bundle install
   build:
     commands:
       - echo Migrating and seeding db...
