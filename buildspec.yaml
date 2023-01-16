@@ -9,7 +9,9 @@ phases:
     commands:
       - echo Installing dependencies...........
       - apt-get update -y
-      - apt-get install -y ruby-dev build-essential libpq-dev nodejs
+      - apt-get install -y build-essential libpq-dev nodejs
+      - rbenv install $RUBY_VERSION
+      - rbenv global $RUBY_VERSION
   pre_build: 
     commands:
       - echo Installing gems...
