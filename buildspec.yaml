@@ -1,10 +1,20 @@
 version: 0.2
 
+env:
+  variables:
+    RUBY_VERSION: '2.7.4'
+
 phases: 
+  install:
+    commands:
+      - echo Installing ruby version $RUBY_VERSION
+      - rbenv install $RUBY_VERSION
+      - rbenv global $RUBY_VERSION
+      - gem install bundler
   pre_build: 
     commands:
       - echo Installing gems...
-      - bundle install
+      - bundle exec install
   build:
     commands:
       - echo Migrating and seeding db...
