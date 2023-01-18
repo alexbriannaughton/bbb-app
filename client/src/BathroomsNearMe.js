@@ -3,6 +3,7 @@ import { Wrapper } from '@googlemaps/react-wrapper'
 import Marker from './components/Marker'
 import BathroomNearMeMap from './components/BathroomNearMeMap'
 import BathroomsNearMeMarkers from './components/BathroomsNearMeMarkers'
+import { Link } from "react-router-dom"
 
 function BathroomsNearMe({ APIKey }) {
 
@@ -19,11 +20,18 @@ function BathroomsNearMe({ APIKey }) {
         )
     })
 
-console.log(currLocation)
+    console.log(currLocation)
 
     useEffect(() => {
         getLocationJs()
     }, [])
+
+    // const getLocation = async() => {
+    //     const response = await fetch('https://ipapi.co/json')
+    //     const data = await response.json()
+    //     setCurrLocation({ lat: data.latitude, lng: data.longitude })
+    // }
+
 
     const getLocationJs = () => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -60,9 +68,30 @@ console.log(currLocation)
         }
     }
 
+    function renderList() {
+        if (bathrooms.length > 0) {
+            return (
+                bathrooms.map(bathroom => {
+                    return (
+                        <Link className="nounderline " to={`/bathrooms/${bathroom.id}`} key={bathroom.id}>
+                            <div className="LVOneBathroom BB">
+                                <p className="LVLocation">{bathroom.location}</p>
+                                <p className="LVPublic">{bathroom.public === true ? "Public" : ""}</p>
+                                <p id="neighborhood">{bathroom.neighborhood}</p>
+                                <p className="LVDescription">{bathroom.description}</p>
+                            </div>
+                        </Link>
+                    )
+                })
+            )
+        }
+    }
+
     return (
         <>
+            <h1 id="BBTitle">Bathrooms near me</h1>
             {renderMap()}
+            {renderList()}
         </>
     )
 }
