@@ -22,11 +22,8 @@ function App() {
   const [bathrooms, setBathrooms] = useState([])
 
 
-  const APIKey =
-    "AIzaSyDieB4V0IYhdHBcPm1JNClD_RVu7w1tac0"
+  const APIKey = process.env.REACT_APP_GOOGLE_API_KEY
 
-
-  // console.log(bathrooms)
 
   useEffect(() => {
     // auto-login
