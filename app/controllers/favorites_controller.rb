@@ -13,6 +13,11 @@ class FavoritesController < ApplicationController
         head :no_content
     end
 
+    def show
+        user = User.find(params[:id])
+        render json: user.favorites
+    end
+
     private
 
     def favorite_params

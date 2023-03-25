@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :bathrooms
   resources :users
 
+  get "/users/:id/favorites", to: "favorites#show"
+
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/me", to: "users#show"

@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 function BathroomForm({ user, APIKey, setBathrooms }) {
 
     const navigate = useNavigate()
-    
+
     // bathroom fields
     const [location, setLocation] = useState("")
     const [bathroomDescription, setBathroomDescription] = useState("")
@@ -37,7 +37,7 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
         //     return setErrors(["You need to login to upload a new bathroom!"])
         // }
 
-        try { 
+        try {
 
             const googleResp = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location},seattle&key=${APIKey}`)
 
@@ -45,8 +45,8 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
             if (!googleResp.ok || newGeocode.results[0].geometry === undefined) {
                 throw ["You need to enter a valid address"]
             }
-            
-            
+
+
             const bathroomConfig = {
                 method: "POST",
                 headers: {
@@ -94,8 +94,8 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
                 throw newReview.errors
             }
 
-            
-            
+
+
             navigate(`/bathrooms/${newBathroom.id}`)
             const bResp = await fetch("/bathrooms")
             const newBathrooms = await bResp.json()
@@ -108,147 +108,157 @@ function BathroomForm({ user, APIKey, setBathrooms }) {
         }
     }
 
-    return (
-        <div id="ABContainer">
-            <form id="AddBathroomForm" onSubmit={handleSubmit}>
+    function renderBathroomForm() {
+        return (
+            <>
+                <h1 id="AddBathroomTitle">Add a new bathroom</h1>
+                <div id="ABContainer">
+                    <form id="AddBathroomForm" onSubmit={handleSubmit}>
 
-                {/* <h2>bathroom fields:</h2> */}
-                <div className="ABFlex">
-                    <div>
-                        <label>
-                            Street Address:
-                        </label>
-                        <input
-                            placeholder="1600 Pennsylvania Ave NW"
-                            type="text"
-                            value={location}
-                            onChange={(e) => setLocation(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Date Used:</label>
-                        <DatePicker
-                            selected={date}
-                            onChange={(date) => setDate(date)}
-                        />
-                    </div>
-                </div>
-                <div className="ABFlex">
-                    <div>
-                        <label>
-                            Location description:
-                        </label>
-                        <textarea
-                            type="text"
-                            value={bathroomDescription}
-                            onChange={(e) => setBathroomDescription(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>
-                            Public?
-                        </label>
-                        <div id="publicFlex">
-                            
-                            <input
-                                className="radio"
-                                type="radio"
-                                value={true}
-                                onChange={(e) => setPublicBool(e.target.value)}
-                                name="public"
-                            />
-                            <label className="notblock">True</label>
-                            <input
-                                className="radio"
-                                type="radio"
-                                value={0}
-                                onChange={(e) => setPublicBool(e.target.value)}
-                                name="public"
-                            />
-                            <label className="notblock">False</label>
+                        {/* <h2>bathroom fields:</h2> */}
+                        <div className="ABFlex">
+                            <div>
+                                <label>
+                                    Street Address:
+                                </label>
+                                <input
+                                    placeholder="1600 Pennsylvania Ave NW"
+                                    type="text"
+                                    value={location}
+                                    onChange={(e) => setLocation(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label>Date Used:</label>
+                                <DatePicker
+                                    selected={date}
+                                    onChange={(date) => setDate(date)}
+                                />
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                {/* <h2>Review fields:</h2> */}
-                
-                <label>Bathroom Description:</label>
+                        <div className="ABFlex">
+                            <div>
+                                <label>
+                                    Location description:
+                                </label>
+                                <textarea
+                                    type="text"
+                                    value={bathroomDescription}
+                                    onChange={(e) => setBathroomDescription(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label>
+                                    Public?
+                                </label>
+                                <div id="publicFlex">
 
-                <textarea
-                    id="ABBD"
-                    type="text"
-                    value={reviewDescription}
-                    onChange={(e) => setReviewDescription(e.target.value)}
-                />
-                <div className="ABFlex">
-                    <div>
-                        <label>Cleanliness:</label>
+                                    <input
+                                        className="radio"
+                                        type="radio"
+                                        value={true}
+                                        onChange={(e) => setPublicBool(e.target.value)}
+                                        name="public"
+                                    />
+                                    <label className="notblock">True</label>
+                                    <input
+                                        className="radio"
+                                        type="radio"
+                                        value={0}
+                                        onChange={(e) => setPublicBool(e.target.value)}
+                                        name="public"
+                                    />
+                                    <label className="notblock">False</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* <h2>Review fields:</h2> */}
+
+                        <label>Bathroom Description:</label>
+
                         <textarea
+                            id="ABBD"
                             type="text"
-                            value={cleanliness}
-                            onChange={(e) => setCleanliness(e.target.value)}
+                            value={reviewDescription}
+                            onChange={(e) => setReviewDescription(e.target.value)}
                         />
-                    </div>
-                    <div>
-                        <label>Cleanliness Rating:</label>
-                        <RatingButton
-                            rating={cleanlinessRating}
-                            setRating={setCleanlinessRating}
-                        />
-                    </div>
+                        <div className="ABFlex">
+                            <div>
+                                <label>Cleanliness:</label>
+                                <textarea
+                                    type="text"
+                                    value={cleanliness}
+                                    onChange={(e) => setCleanliness(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label>Cleanliness Rating:</label>
+                                <RatingButton
+                                    rating={cleanlinessRating}
+                                    setRating={setCleanlinessRating}
+                                />
+                            </div>
+                        </div>
+                        <div className="ABFlex">
+                            <div>
+                                <label>Function:</label>
+                                <textarea
+                                    type="text"
+                                    value={bathroomFunction}
+                                    onChange={(e) => setBathroomFunction(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label>Function Rating:</label>
+                                <RatingButton className="ratingButton"
+                                    rating={bathroomFunctionRating}
+                                    setRating={setBathroomFunctionRating}
+                                />
+                            </div>
+                        </div>
+                        <div className="ABFlex">
+                            <div>
+                                <label>Style:</label>
+                                <textarea
+                                    type="text"
+                                    value={style}
+                                    onChange={(e) => setStyle(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label>Style Rating:</label>
+                                <RatingButton
+                                    rating={styleRating}
+                                    setRating={setStyleRating}
+                                />
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <button id="ABSubmit" type="submit">
+                            {isLoading ? "Loading..." : "Submit"}
+                        </button>
+                        <br />
+                        {errors.map((err) => (
+                            <p key={err}>{err}</p>
+                        ))}
+                    </form>
                 </div>
-                <div className="ABFlex">
-                    <div>
-                        <label>Function:</label>
-                        <textarea
-                            type="text"
-                            value={bathroomFunction}
-                            onChange={(e) => setBathroomFunction(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Function Rating:</label>
-                        <RatingButton className="ratingButton"
-                            rating={bathroomFunctionRating}
-                            setRating={setBathroomFunctionRating}
-                        />
-                    </div>
-                </div>
-                <div className="ABFlex">
-                    <div>
-                        <label>Style:</label>
-                        <textarea
-                            type="text"
-                            value={style}
-                            onChange={(e) => setStyle(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Function Rating:</label>
-                        <RatingButton
-                            rating={styleRating}
-                            setRating={setStyleRating}
-                        />
-                    </div>
-                </div>
-                
-                
-                
-                
-
-
-
-
-
-                <button id="ABSubmit" type="submit">
-                    {isLoading ? "Loading..." : "Submit"}
-                </button>
-                <br />
-                {errors.map((err) => (
-                    <p key={err}>{err}</p>
-                ))}
-            </form>
-        </div>
+            </>
+        )
+    }
+    return (
+        <>
+            {user ? renderBathroomForm() : <h1 align="center">You need to log in to upload a new bathroom</h1>}
+        </>
     )
 }
 

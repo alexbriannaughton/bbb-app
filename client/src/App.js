@@ -50,11 +50,22 @@ function App() {
 
   useEffect(() => {
     if (user) {
-        setUserReviews(user.reviews)
-        setUserFavorites(user.favorites)
+      setUserReviews(user.reviews)
     }
-},[user])
+  }, [user])
 
+  useEffect(() => {
+    if (user) {
+      // setUserReviews(user.reviews)
+      fetch(`/users/${user.id}/favorites`).then((r) => {
+        if (r.ok) {
+          r.json().then((favs) => {
+            setUserFavorites(favs)
+          })
+        }
+      })
+    }
+  }, [user])
 
 
   return (
@@ -95,7 +106,7 @@ function App() {
             userReviews={userReviews}
             setUserReviews={setUserReviews}
             userFavorites={userFavorites}
-            setUserFavorites={setUserFavorites}/>}
+            setUserFavorites={setUserFavorites} />}
         />
         <Route
           path={`/mirror`}
@@ -106,7 +117,7 @@ function App() {
             setUserReviews={setUserReviews}
             userFavorites={userFavorites}
             setUserFavorites={setUserFavorites}
-            />}
+          />}
         />
       </Routes>
 
